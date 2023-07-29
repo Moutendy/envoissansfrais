@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Services;
+use Illuminate\Http\Request;
+use App\Models\{validationModel};
+
+/**
+ * Class ValidationService
+ * @package App\Services
+ */
+class ValidationService
+{
+
+    public function store(Request $request)
+    {
+        $validationModelModel = validationModel::create($request->all());
+        if($validationModelModel)
+        {
+            return response(['message'=>'Save validation.'],200);
+        }
+        return response(['message'=>'not Save validation.'],400);
+    }
+     public function show()
+    {
+        $validationModel = validationModel::with('id')->get();
+        if($validationModel)
+        {
+            return response(['validation'=>$validationModel],200);
+        }
+    }
+    public function showById($id)
+    {
+        $validationModel = validationModel::find($id);
+        if($validationModel)
+        {
+            return response(['validation'=>$validationModel],200);
+        }
+        return response(['validation'=>'not Save validation.'],401);
+    }
+    public function update(Request $request,$id)
+    {
+        $validationModel = validationModel::find($id);
+        if($validationModel->update($request->all()))
+        {
+            return Response('success Update validation',200);
+        }
+
+        return response(['validation'=>'not Update validation.'],401);
+    }
+
+    public function delete($id)
+    {
+        $validationModel = validationModel::find($id);
+        if($validationModel)
+        {
+            return response(['validation'=>validationModel::destroy($id)],200);
+        }
+        return response(['validation'=>'validation not found.'],401);
+    }
+}
