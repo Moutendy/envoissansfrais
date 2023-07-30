@@ -17,11 +17,15 @@ class transactionModel extends Model
         'start',
         'end',
         'type',
+        'id'
     ];
     public function user()
     {
         return $this->belongsTo(User::class,'idUserSend','idUserAgency','idUserReceiver');
     }
 
-
+    public function messages()
+    {
+        return $this->hasMany(MessageModel::class, 'id');
+    }
 }
