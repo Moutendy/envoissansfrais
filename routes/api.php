@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController,DescriptionController,RoleController, TransactionController, ValidationController};
+use App\Http\Controllers\{PostController,UserController,DescriptionController,RoleController, TransactionController, ValidationController};
 
 
 /*
@@ -26,6 +26,12 @@ Route::resource('/role',RoleController::class);
 
 Route::resource('/validation',ValidationController::class);
 
-Route::resource('/user',UserController::class);
+
 
 Route::resource('/transaction',TransactionController::class);
+//user
+Route::resource('/user',UserController::class);
+
+//post
+Route::resource('/post',PostController::class);
+

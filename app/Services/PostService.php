@@ -31,22 +31,24 @@ class PostService
     {
         $attrs = $request->validate([
             'desc' => 'required|string',
-
         ]);
 
-        $request->image;
-        if ($request->image) {
 
-            $image = $this->imageService->saveImage($request->image, 'posts');
+        if (!empty($request->file('image'))) {
+            $path = 'public/posts';
+            $fileimage = $request->file('image');
+            $nameimage = $fileimage->getClientOriginalName();
+            $request->file('image')->move('storage\public\posts', $nameimage);
+
             $post = PostModel::create([
                 'desc' => $attrs['desc'],
-                'user' => auth()->user()->id,
-                'image' => $image,
+                'user' => 2,
+                'image' => URL::to('/') . '/storage/' . $path . '/' . $nameimage,
             ]);
         } else {
             $post = PostModel::create([
                 'desc' => $attrs['desc'],
-                'user' => auth()->user()->id,
+                'user' => 2,
                 'image' => '',
             ]);
         }
@@ -61,16 +63,16 @@ class PostService
         if (!$post) {
             return response(['message' => 'Post not found.'], 403);
         }
-        if ($post->user != auth()->user()->id) {
+        if ($post->user != 2) {
             return response(['message' => 'Permission denied.'], 403);
         }
-        $attrs = $request->validate([
-            'desc' => 'required|string',
-        ]);
-        $post->update(['desc' => $attrs['desc'],
-        ]);
 
-        return response(['message' => 'Post update.', 'post' => $post], 201);
+
+        if($post->update($request->all()))
+        {
+            return Response('success Post update.',200);
+        }
+        return response(['message' => 'Post no update.', 'post' => $post], 201);
     }
 
     public function destroy($id)

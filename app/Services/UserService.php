@@ -14,6 +14,7 @@ class UserService
 
     public function store(Request $request)
     {
+
         $userModel = User::create($request->all());
         if($userModel)
         {
@@ -23,7 +24,7 @@ class UserService
     }
      public function show()
     {
-        $user = User::with('id')->get();
+        $user = User::orderBy('created_at', 'desc')->with('posts:id')->get();
         if($user)
         {
             return response(['user'=>$user],200);
