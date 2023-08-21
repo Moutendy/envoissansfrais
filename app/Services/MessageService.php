@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\MessageModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 /**
  * Class MessageService
  * @package App\Services
@@ -18,52 +19,88 @@ class MessageService
         $this->imageService = $imageService;
     }
 
-    public function indexInbox($name,$me)
+    public function indexInbox($rec,$me)
     {
-        $message =  DB::select('select * from message_models ms
-         join users as u on u.name = ms.recipient
-         where  ms.issue = :name and ms.recipient = :me', ['name' => $name,'me'=>$me]);
+        $message =  DB::select('SELECT * FROM `message_models` WHERE issue=:me AND recipient=:rec', ['me' => $me,'rec'=>$rec]);
         return response(['message' => $message], 201);
     }
 
     public function index($name)
     {
-        $message =  DB::select('select * from message_models 
-         where recipient = :name', ['name' => $name]);
+        if(!$name)
+        {
+            return response(['message' => 'no fund message'], 404);
+        }
+        $message =  DB::select('select * from message_models
+         where issue = :name', ['name' =>$name]);
         return response(['message' => $message], 201);
     }
 
     public function store(Request $request)
     {
-        $attrs = $request->validate([
-            'issue' => 'required|string',
-            'recipient' => 'required|string',
-            'transaction_model' => 'required|number',
-            'sms_text' => 'string',
-            'sms_image' => 'string'
-        ]);
-         $request->sms_image;
-        if ($request->sms_image) {
+        // $attrs = $request->validate([
+        //     'issue' => 'required|string',
+        //     'recipient' => 'required|string',
+        //     'sms_text' => 'string',
+        //     'sms_image' => 'string'
+        // ]);
+        //  $request->sms_image;
+        // if ($request->sms_image) {
 
-            $image = $this->imageService->saveImage($request->sms_image, 'message');
-            $sms = MessageModel::create([
-                'issue' => $attrs['issue'],
-                'recipient' => $attrs['recipient'],
-                'transaction_model' =>$attrs['transaction_model'],
-                'sms_text' =>$attrs['sms_text'],
-                'sms_image' => $image,
-            ]);
-        } else {
-            $sms = MessageModel::create([
-                'issue' => $attrs['issue'],
-                'recipient' => $attrs['recipient'],
-                'transaction_model' =>$attrs['transaction_model'],
-                'sms_text' =>$attrs['sms_text'],
-                'sms_image' => '',
-            ]);
-        }
+        //     $image = $this->imageService->saveImage($request->sms_image, 'message');
+        //     $sms = MessageModel::create([
+        //         'issue' => $attrs['issue'],
+        //         'recipient' => $attrs['recipient'],
+        //         'transaction_model' =>2,
+        //         'sms_text' =>$attrs['sms_text'],
+        //         'sms_image' => $image,
+        //     ]);
+        // } else {
+        //     $sms = MessageModel::create([
+        //         'issue' => $attrs['issue'],
+        //         'recipient' => $attrs['recipient'],
+        //         'transaction_model' =>2,
+        //         'sms_text' =>$attrs['sms_text'],
+        //         'sms_image' => '',
+        //     ]);
+        // }
 
-        return response(['message' => 'Message send.', 'message' => $sms], 201);
+        // return response(['message' => 'Message send.', 'message' => $sms], 201);
+
+//
+
+$attrs = $request->validate([
+    'issue' => 'required|string',
+    'recipient' => 'required|string',
+    'sms_text' => 'string',
+    'sms_image' => ''
+]);
+
+
+if (!empty($request->file('sms_image'))) {
+    $path = 'public/imagesmessage';
+    $fileimage = $request->file('sms_image');
+    $nameimage = $fileimage->getClientOriginalName();
+    $request->file('sms_image')->move('storage\public\imagesmessage', $nameimage);
+
+    $message = MessageModel::create([
+        'issue' => $attrs['issue'],
+        'transaction_model' => 2,
+        'recipient' => $attrs['recipient'],
+        'sms_text' =>$attrs['sms_text'],
+        'image' => URL::to('/') . '/storage/' . $path . '/' . $nameimage,
+    ]);
+} else {
+    $message = MessageModel::create([
+        'issue' => $attrs['issue'],
+        'transaction_model' => 2,
+        'recipient' => $attrs['recipient'],
+        'sms_text' =>$attrs['sms_text'],
+        'image' => '',
+    ]);
+}
+
+return response(['message' => 'message send.', 'message' => $message], 201);
     }
 
 
@@ -74,19 +111,31 @@ class MessageService
             return response(['message' => 'message not found.'], 403);
         }
         $attrs = $request->validate([
-            'issue' => 'required|string',
-            'recipient' => 'required|string',
-            'transaction_model' => 'required|number',
             'sms_text' => 'string',
-            'sms_image' => 'string'
+
         ]);
-        $message->update([
-                'issue' => $attrs['issue'],
-                'recipient' => $attrs['recipient'],
-                'transaction_model' =>$attrs['transaction_model'],
-                'sms_text' =>$attrs['sms_text'],
-                'sms_image' => '',
-        ]);
+        if (!empty($request->file('sms_image')) && !$attrs['sms_text']) {
+            $path = 'public/imagesmessage';
+            $fileimage = $request->file('sms_image');
+            $nameimage = $fileimage->getClientOriginalName();
+            $request->file('sms_image')->move('storage\public\imagesmessage', $nameimage);
+
+            $message->update([
+                    'sms_text' =>$attrs['sms_text'],
+                    'sms_image' =>URL::to('/') . '/storage/' . $path . '/' . $nameimage,
+            ]);
+            }
+            else{
+
+                $message->update([
+                    'sms_text' =>$attrs['sms_text'],
+            ]);
+
+            }
+
+
+
+
         return response(['message' => 'message update.', 'message' => $message], 201);
     }
 

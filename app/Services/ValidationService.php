@@ -22,7 +22,7 @@ class ValidationService
     }
      public function show()
     {
-        $validationModel = validationModel::with('id')->get();
+        $validationModel = validationModel::orderBy('created_at', 'desc')->get();
         if($validationModel)
         {
             return response(['validation'=>$validationModel],200);
@@ -40,10 +40,16 @@ class ValidationService
     public function update(Request $request,$id)
     {
         $validationModel = validationModel::find($id);
+        if(!$validationModel)
+        {
+            return Response('table validation with '.$id.' not found',401);
+        }
         if($validationModel->update($request->all()))
         {
             return Response('success Update validation',200);
         }
+
+
 
         return response(['validation'=>'not Update validation.'],401);
     }

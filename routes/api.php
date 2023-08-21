@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{PostController,UserController,DescriptionController,RoleController, TransactionController, ValidationController};
+use App\Http\Controllers\{MessageController,LikeAndDisLikeController,PostController,UserController,DescriptionController,RoleController, TransactionController, ValidationController};
 
 
 /*
@@ -34,4 +34,10 @@ Route::resource('/user',UserController::class);
 
 //post
 Route::resource('/post',PostController::class);
+//like
+Route::resource('/like',LikeAndDisLikeController::class);
+
+//message
+Route::resource('/message',MessageController::class);
+Route::get('/message/indexInbox/{reci}/{me}',[MessageController::class,'indexInbox']);
 

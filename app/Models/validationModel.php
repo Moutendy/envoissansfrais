@@ -13,6 +13,7 @@ class validationModel extends Model
         'idUserSend',
         'idUserReceiver',
         'idUserAgency',
+        'desc',
         'transaction_model'
     ];
 

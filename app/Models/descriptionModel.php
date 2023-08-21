@@ -9,12 +9,12 @@ class descriptionModel extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idUserAgency',
+        'user',
         'desc',
     ];
     public function user()
     {
-        return $this->belongsTo(User::class,'idUserAgency');
+        return $this->belongsTo(User::class,'user');
     }
 
 }

@@ -40,6 +40,11 @@ class DescService
     public function update(Request $request,$id)
     {
         $desc = descriptionModel::find($id);
+
+        if (!$desc) {
+            return response(['message' => 'Post not found.'], 403);
+        }
+       
         if($desc->update($request->all()))
         {
             return Response('success Update description',200);

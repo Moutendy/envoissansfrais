@@ -8,6 +8,7 @@ use App\Models\{LikeModel,PostModel};
  */
 class LikeService
 {
+    //auth()->user()->id
     public function likeanddislike($id)
     {
         $post=PostModel::find($id);
@@ -15,11 +16,11 @@ class LikeService
         {
             return response(['message'=>'Post not found.'],404);
         }
-       $like= $post->likes()->where('user',auth()->user()->id)->first();
+       $like= $post->likes()->where('user',2)->first();
        if(!$like)
        {
         LikeModel::create(['post_model'=>$id,
-        'user'=>auth()->user()->id]);
+        'user'=>2]);
         return response(['message'=>'Liked.'],201);
        }
 

@@ -21,7 +21,7 @@ class TransactionService
     }
      public function show()
     {
-        $transactionModel = transactionModel::with('id')->get();
+        $transactionModel = transactionModel::orderBy('created_at', 'desc')->get();
         if($transactionModel)
         {
             return response(['transaction'=>$transactionModel],200);
@@ -52,7 +52,7 @@ class TransactionService
         $transactionModel = transactionModel::find($id);
         if($transactionModel)
         {
-            return response(['transaction'=>transactionModel::destroy($id)],200);
+            return response(['transaction'=>'transaction not found.'+transactionModel::destroy($id)],200);
         }
         return response(['transaction'=>'transaction not found.'],401);
     }
