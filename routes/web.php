@@ -16,3 +16,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.post');
 });
+Route::get('/profil', function () {
+    return view('layouts.profil');
+});
+
+Route::get('/transaction', function () {
+    return view('layouts.transaction');
+});
+Route::get('/validation', function () {
+    return view('layouts.validation');
+});
+Route::get('/addtransaction', function () {
+    return view('layouts.addtransaction');
+});
+
+Route::get('/login', function () {
+    return view('layouts.login');
+});
+
+Route::get('/register', function () {
+    return view('layouts.register');
+});
