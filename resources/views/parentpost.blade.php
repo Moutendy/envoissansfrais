@@ -16,10 +16,10 @@
 </head>
 
 <body>
-    <div class="postbody">
+
         @yield('content')
-    </div>
+
 
 </body>
-<script src="{{ asset('js/post/post.js') }}"></script>
+
 </html>

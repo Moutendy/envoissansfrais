@@ -30,6 +30,10 @@ Route::get('/addtransaction', function () {
     return view('layouts.addtransaction');
 });
 
+Route::get('/addpost', function () {
+    return view('layouts.addpost');
+});
+
 Route::get('/login', function () {
     return view('layouts.login');
 });

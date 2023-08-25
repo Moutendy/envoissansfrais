@@ -39,5 +39,6 @@ Route::resource('/like',LikeAndDisLikeController::class);
 
 //message
 Route::resource('/message',MessageController::class);
+
 Route::get('/message/indexInbox/{reci}/{me}',[MessageController::class,'indexInbox']);
 

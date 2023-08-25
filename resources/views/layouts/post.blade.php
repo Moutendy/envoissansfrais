@@ -19,7 +19,7 @@
             </div>
 
             <div class="card-image">
-                <div class="text-post">
+                <div class="text-post"  id="desc">
                    dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
                     <a>@bulmaio</a>.
                     <a href="#">#css</a>

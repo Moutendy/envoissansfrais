@@ -23,8 +23,8 @@ class PostService
 
     public function index()
     {
-        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil')->withCount('comments', 'likes')->paginate(6);
-        return response(['post' => $post], 201);
+        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil')->withCount('comments', 'likes')->get();
+        return response($post, 201);
     }
 
     public function store(Request $request)
