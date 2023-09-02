@@ -3,12 +3,7 @@
 @section('content')
 <div class="columns body-columns">
     <div class="column is-half is-offset-one-quarter" id="card-container">
-          <div class="comment-options-dropdown">
-            <ul>
-              <li>Modifier</li>
-              <li>Supprimer</li>
-            </ul>
-          </div>
+         
     </div>
    </div>
 </div>
