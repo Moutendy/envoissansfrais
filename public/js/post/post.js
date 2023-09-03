@@ -1,4 +1,9 @@
 var menuicon = document.createElement("div");
+var updatepost = document.createElement("li");
+var deletepost = document.createElement("li");
+var id_global;
+var icon_close = document.createElement("i");
+
 
 window.onload = function() {
     afficherDonnees();
@@ -21,17 +26,16 @@ function afficherDonnees() {
             menuicon.classList.add("comment-options-dropdown");
             menuicon.style.display = 'none';
             var ul = document.createElement("ul");
-            var li = document.createElement("li");
-            var li2 = document.createElement("li");
-            li.textContent = "Modifier";
-            li2.textContent = "Supprimer";
-            ul.appendChild(li);
-            ul.appendChild(li2);
+
+            updatepost.textContent = "Modifier";
+            deletepost.textContent = "Supprimer";
+            ul.appendChild(updatepost);
+            ul.appendChild(deletepost);
             cardContainer.appendChild(menuicon);
 
             for (; i < donnees.length; i++) {
 
-                console.log(donnees);
+
 
 
                 var card = document.createElement("div");
@@ -71,13 +75,22 @@ function afficherDonnees() {
                 icon_menu.classList.add("material-icons");
                 icon_menu.classList.add("posi-icons");
                 icon_menu.classList.add("imageprofil");
-                icon_menu.querySelector("more-icon")
+                icon_menu.querySelector("more-icon");
                 icon_menu.textContent = "more_horiz";
 
+                var icon_span = document.createElement("span");
+                icon_span.classList.add("popup-close");
+
+                icon_close.classList.add("fas");
+                icon_close.classList.add("fa-times");
+                icon_close.textContent = "+";
 
 
 
-                menu(icon_menu, donnees[i].id)
+
+                menu(icon_menu, donnees[i].id);
+                menuicon.appendChild(icon_span);
+                icon_span.appendChild(icon_close);
                 menuicon.appendChild(ul);
                 header.appendChild(media);
                 media.appendChild(headerleft);
@@ -124,13 +137,49 @@ function afficherDonnees() {
 }
 
 function menu(moreIcon, id) {
+
     moreIcon.addEventListener("click", function() {
         if (menuicon.style.display == 'none') {
             menuicon.style.display = 'block';
+            id_global = id;
         } else {
-
             menuicon.style.display = 'none';
         }
     });
 
 }
+deletepost.addEventListener("click", function() {
+    console.log(id_global);
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+
+        if (xhr.readyState == 4 && xhr.status == 201) {
+
+        } else {
+            console.log("echec");
+        }
+    }
+    xhr.open('DELETE', '/api/post/' + id_global, true);
+
+    xhr.send();
+    location.reload();
+
+
+});
+
+icon_close.addEventListener("click", function() {
+
+    menuicon.style.display = 'none';
+});
+updatepost.addEventListener("click", function(event) {
+    console.log("modifier");
+    // Empêche le comportement par défaut du lien (évite de charger une nouvelle page)
+    event.preventDefault();
+
+    // URL vers laquelle vous souhaitez rediriger
+    const updatepostlien = '/updatepost'; // Remplacez par l'URL de destination
+
+    // Redirigez vers la nouvelle URL
+    window.location.href = updatepostlien;
+
+});

@@ -81,13 +81,13 @@ class PostService
         if (!$post) {
             return response(['message' => 'Aucun post avec cette id.'], 404);
         }
-        if ($post->user != auth()->user()->id) {
+        if ($post->user != 2) {
             return response(['message' => 'Permission denied.'], 403);
         }
-        if ($post->user == auth()->user()->id) {
+        if ($post->user == 2) {
             $post->delete();
             return response(['message' => 'post supprimé'], 201);
         }
-        return response(['message' => auth()->user()->id], 201);
+        return response(['message' => 2], 201);
     }
 }

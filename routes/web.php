@@ -34,6 +34,10 @@ Route::get('/addpost', function () {
     return view('layouts.addpost');
 });
 
+Route::get('/updatepost', function () {
+    return view('layouts.updatepost');
+});
+
 Route::get('/login', function () {
     return view('layouts.login');
 });
