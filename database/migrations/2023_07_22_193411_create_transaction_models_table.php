@@ -15,11 +15,13 @@ class CreateTransactionModelsTable extends Migration
     {
         Schema::create('transaction_models', function (Blueprint $table) {
             $table->id();
-            $table->string('idUserSend')->unique();
-            $table->string('idUserReceiver')->unique();
-            $table->string('idUserAgency')->unique();
+            $table->bigInteger('user_send')->unsigned();
+
+            $table->bigInteger('user_receiver')->unsigned();
+
+            $table->bigInteger('user_agencier')->unsigned();
+            
             $table->string('desc');
-            $table->string('type')->unique();
             $table->dateTime('start');
             $table->dateTime('end');
             $table->timestamps();

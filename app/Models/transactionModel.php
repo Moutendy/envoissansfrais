@@ -9,19 +9,18 @@ class transactionModel extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idUserSend',
-        'idUserReceiver',
-        'idUserAgency',
+        'user_send',
+        'user_receiver',
+        'user_agencier',
         'desc',
-        'date',
+
         'start',
         'end',
-        'type',
-        'id'
+
     ];
     public function user()
     {
-        return $this->belongsTo(User::class,'idUserSend','idUserAgency','idUserReceiver');
+        return $this->belongsTo(User::class,'user_send','user_receiver','user_agencier');
     }
 
     public function messages()

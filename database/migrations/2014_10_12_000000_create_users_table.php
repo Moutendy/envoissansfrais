@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('image_desc')->nullable();
             $table->string('pays')->nullable();
             $table->string('ville')->nullable();
-            $table->boolean('status')->default(false);
+            $table->string('status')->default("bleu");
             $table->bigInteger('role_model')->unsigned();
             $table->foreign('role_model')->references('id')->on('role_models')->onDelete('cascade');
             $table->rememberToken();
