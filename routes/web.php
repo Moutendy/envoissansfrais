@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{PostController};
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +33,14 @@ Route::get('/addtransaction', function () {
 
 Route::get('/addpost', function () {
     return view('layouts.addpost');
-});
+})->name('addpost');
+Route::get('/updatepost/{id}', [PostController::class, 'updatepost'])->name('updatepost');
 
-Route::get('/updatepost', function () {
-    return view('layouts.updatepost');
-});
+Route::post('/post/{id}', [PostController::class, 'update'])->name('update');
+
+Route::post('/post', [PostController::class, 'store'])->name('store');
+
+
 
 Route::get('/login', function () {
     return view('layouts.login');

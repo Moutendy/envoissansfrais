@@ -32,47 +32,56 @@ class PostService
         $attrs = $request->validate([
             'desc' => 'required|string',
         ]);
+        if(!Empty($request->file('image'))){
 
 
-        if (!empty($request->file('image'))) {
-            $path = 'public/posts';
+            $path='app/public/posts';
             $fileimage = $request->file('image');
             $nameimage = $fileimage->getClientOriginalName();
-            $request->file('image')->move('storage\public\posts', $nameimage);
+            $request->file('image')->move('storage\app\public\posts',$nameimage);
 
-            $post = PostModel::create([
-                'desc' => $attrs['desc'],
-                'user' => 2,
-                'image' => URL::to('/') . '/storage/' . $path . '/' . $nameimage,
-            ]);
-        } else {
-            $post = PostModel::create([
-                'desc' => $attrs['desc'],
-                'user' => 2,
-                'image' => '',
-            ]);
-        }
-
-        return response(['message' => 'Post ajouté.', 'post' => $post], 201);
+    }
+        $post = PostModel::create([
+            'desc' => $attrs['desc'],
+            'user' => 2,
+            'image' => URL::to('/').'/storage/'.$path.'/'.$nameimage,
+        ]);
+        return back();
     }
 
 
     public function update(Request $request, $id)
     {
         $post = PostModel::find($id);
-        if (!$post) {
-            return response(['message' => 'Post not found.'], 403);
-        }
-        if ($post->user != 2) {
-            return response(['message' => 'Permission denied.'], 403);
-        }
 
 
-        if($post->update($request->all()))
+
+        if(!Empty($request->file('image')) && !Empty($request->desc))
         {
-            return Response('success Post update.',200);
+            $path='app/public/posts';
+            $fileimage = $request->file('image');
+            $nameimage = $fileimage->getClientOriginalName();
+            $request->file('image')->move('storage\app\public\posts',$nameimage);
+
+            $post->update(['image'=>URL::to('/').'/storage/'.$path.'/'.$nameimage,
+           'desc'=>$request->desc]);
         }
-        return response(['message' => 'Post no update.', 'post' => $post], 201);
+        else   if(!Empty($request->file('image'))){
+
+
+                $path='app/public/posts';
+                $fileimage = $request->file('image');
+                $nameimage = $fileimage->getClientOriginalName();
+                $request->file('image')->move('storage\app\public\posts',$nameimage);
+
+                $post->update(['image'=>URL::to('/').'/storage/'.$path.'/'.$nameimage]);
+
+        }
+        else  if(!Empty($request->desc)){
+            $post->update([
+            'desc'=>$request->desc]);
+        }
+        return back()->with('success', 'Image Ajouter!');
     }
 
     public function destroy($id)
@@ -87,6 +96,23 @@ class PostService
         if ($post->user == 2) {
             $post->delete();
             return response(['message' => 'post supprimé'], 201);
+        }
+        return response(['message' => 2], 201);
+    }
+
+
+    public function show($id)
+    {
+        $post = PostModel::find($id);
+        if (!$post) {
+            return response(['message' => 'Aucun post avec cette id.'], 404);
+        }
+        if ($post->user != 2) {
+            return response(['message' => 'Permission denied.'], 403);
+        }
+        if ($post->user == 2) {
+
+            return response($post, 201);
         }
         return response(['message' => 2], 201);
     }

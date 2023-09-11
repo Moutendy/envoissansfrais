@@ -7,6 +7,7 @@ var icon_close = document.createElement("i");
 
 window.onload = function() {
     afficherDonnees();
+
 };
 
 function afficherDonnees() {
@@ -172,12 +173,12 @@ icon_close.addEventListener("click", function() {
     menuicon.style.display = 'none';
 });
 updatepost.addEventListener("click", function(event) {
-    console.log("modifier");
+
     // Empêche le comportement par défaut du lien (évite de charger une nouvelle page)
     event.preventDefault();
 
     // URL vers laquelle vous souhaitez rediriger
-    const updatepostlien = '/updatepost'; // Remplacez par l'URL de destination
+    const updatepostlien = '/updatepost/' + id_global; // Remplacez par l'URL de destination
 
     // Redirigez vers la nouvelle URL
     window.location.href = updatepostlien;

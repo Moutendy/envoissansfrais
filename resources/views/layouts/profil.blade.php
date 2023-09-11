@@ -24,6 +24,9 @@
                                     <div class="d-block">
                                         <button type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</button>
                                     </div>
+                                    <div class="d-block">
+                                   <a href="{{ route('addpost') }}" class="btn btn-sm btn-outline-info text-nowrap mb-0">New Post</a>
+                                    </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-auto">

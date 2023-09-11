@@ -19,41 +19,39 @@
                 <p class="pb-3">
 
                 </p>
-                <form id="contact-form" method="post" autocomplete="off">
+                <form id="contact-form" action="/post/{{ $id }}" method="post"
+                enctype="multipart/form-data">
+                {{ csrf_field() }}
                   <div class="card-body p-0 my-3">
                     <div class="row">
-                      <div class="col-md-6">
+
+
+                      <div class="col-md-12">
+
                         <div class="input-group input-group-static mb-4">
                           <label>Description</label>
-                          <input type="text" class="form-control" placeholder="Description">
+                          <input id="desc" name="desc"  type="textarea" class="form-control" placeholder="Description">
                         </div>
                       </div>
-                      <div class="col-md-6 ps-md-2">
-                        <div class="input-group input-group-static mb-4">
-                          <label>Pays</label>
-                          <input type="text" class="form-control" placeholder="Nom du Pays">
-                        </div>
-                      </div>
+
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <input type="file" name="image"  accept=".jpg, .jpeg, .png, .svg, .gif"  class="btn bg-gradient-primary mt-3 mb-0"/>
+                        </div>
+                      </div>
+                    <br/>
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="input-group input-group-static mb-4">
-                            <label>Type de Transaction</label>
-                            <input type="text" class="form-control" placeholder="Type de Transaction">
+                        <div class="col-md-12">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <a class="d-block blur-shadow-image" id="img">
+                            </a>
                           </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="input-group input-group-static mb-4">
-                              <label>Nom du receveur</label>
-                              <input type="text" value="christopher" class="form-control" placeholder="Nom du receveur">
-                            </div>
-                          </div>
-
                       </div>
                     <div class="row">
                       <div class="col-md-12 text-center">
-                        <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Update !</button>
+                        <button type="submit"  class="btn bg-gradient-primary mt-3 mb-0">Update !</a>
                       </div>
                     </div>
                   </div>

@@ -44,7 +44,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->postService->show($id);
     }
 
     /**
@@ -58,6 +58,7 @@ class PostController extends Controller
     {
         //
         return $this->postService->update($request,$id);
+    
     }
 
     /**
@@ -70,5 +71,18 @@ class PostController extends Controller
     {
         //
         return $this->postService->destroy($id);
+    }
+
+
+      /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatepost($id)
+    {
+        //
+         return view('layouts.updatepost',compact('id'));
     }
 }
