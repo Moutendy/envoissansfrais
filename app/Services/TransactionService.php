@@ -10,11 +10,19 @@ use App\Models\{transactionModel};
  */
 class TransactionService
 {
+    private ValidationService $validationService;
+
+    public function __construct(ValidationService $validationService)
+    {
+        $this->validationService = $validationService;
+    }
+
     public function store(Request $request)
     {
         $transaction = transactionModel::create($request->all());
         if($transaction)
         {
+            $this->validationService->store($transaction);
             return response(['message'=>'Save transaction.'],200);
         }
         return response(['message'=>'not Save transaction.'],400);
@@ -52,7 +60,7 @@ class TransactionService
         $transactionModel = transactionModel::find($id);
         if($transactionModel)
         {
-            return response(['transaction'=>'transaction not found.'+transactionModel::destroy($id)],200);
+            return response(['transaction'=>'transaction not found.'+ $transactionModel->delete()],200);
         }
         return response(['transaction'=>'transaction not found.'],401);
     }

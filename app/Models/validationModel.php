@@ -9,22 +9,21 @@ class validationModel extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'idUserSend',
-        'idUserReceiver',
-        'idUserAgency',
+        'user_send',
+        'user_receiver',
+        'user_agencier',
         'desc',
         'transaction_model'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class,'idUserSend','idUserAgency');
+        return $this->belongsTo(User::class,'id');
     }
 
     public function transaction()
     {
-        return $this->belongsTo(transactionModel::class,'transaction_model');
+        return $this->belongsTo(transactionModel::class,'user_send');
     }
 
 }

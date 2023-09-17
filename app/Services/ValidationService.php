@@ -11,12 +11,16 @@ use App\Models\{validationModel};
 class ValidationService
 {
 
-    public function store(Request $request)
+    public function store($request)
     {
-        $validationModelModel = validationModel::create($request->all());
-        if($validationModelModel)
+
+        if($request)
         {
-            return response(['message'=>'Save validation.'],200);
+            $validation = validationModel::create([
+                'desc' => $request['desc'],
+                'transaction_model' => $request['id']
+            ]);
+            return response(['message'=>'Save validation.', $validation],200);
         }
         return response(['message'=>'not Save validation.'],400);
     }

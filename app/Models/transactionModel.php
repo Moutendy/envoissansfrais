@@ -13,10 +13,8 @@ class transactionModel extends Model
         'user_receiver',
         'user_agencier',
         'desc',
-
         'start',
         'end',
-
     ];
     public function user()
     {

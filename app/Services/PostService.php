@@ -5,7 +5,7 @@ use App\Models\PostModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Services\ImageService;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class PostService
  * @package App\Services
@@ -23,7 +23,9 @@ class PostService
 
     public function index()
     {
-        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil')->withCount('comments', 'likes')->get();
+      //  return DB::select('SELECT * FROM `post_models` WHERE `user`=:user', ['ville'=>$user]);
+
+        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil')->get();
         return response($post, 201);
     }
 
