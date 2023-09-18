@@ -3,8 +3,8 @@ var updatepost = document.createElement("li");
 var deletepost = document.createElement("li");
 var id_global;
 var icon_close = document.createElement("i");
-
-
+var card_image = document.createElement("div");
+var user;
 window.onload = function() {
     afficherDonnees();
 
@@ -71,7 +71,7 @@ function afficherDonnees() {
                 var imghead = document.createElement("img");
                 imghead.classList.add("imageprofil");
                 imghead.src = donnees[i].user.image_profil;
-
+                transaction(donnees[i].user.id);
                 var icon_menu = document.createElement("i");
                 icon_menu.classList.add("material-icons");
                 icon_menu.classList.add("posi-icons");
@@ -104,7 +104,7 @@ function afficherDonnees() {
 
 
 
-                var card_image = document.createElement("div");
+
                 card_image.classList.add("card-image");
                 var title = document.createElement("div");
                 title.classList.add("text-post");
@@ -184,3 +184,13 @@ updatepost.addEventListener("click", function(event) {
     window.location.href = updatepostlien;
 
 });
+
+function transaction(userId) {
+    card_image.addEventListener('click', function(event) {
+        event.preventDefault();
+        const redirectionlien = '/addtransaction/' + userId; // Remplacez par l'URL de destination
+
+        // Redirigez vers la nouvelle URL
+        window.location.href = redirectionlien
+    })
+}

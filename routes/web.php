@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{PostController};
+use App\Http\Controllers\{PostController,TransactionController};
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +27,7 @@ Route::get('/transaction', function () {
 Route::get('/validation', function () {
     return view('layouts.validation');
 });
-Route::get('/addtransaction', function () {
-    return view('layouts.addtransaction');
-});
+Route::get('/addtransaction/{userId}', [TransactionController::class, 'addtransaction'])->name('addtransaction');
 
 Route::get('/addpost', function () {
     return view('layouts.addpost');

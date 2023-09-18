@@ -1,4 +1,4 @@
-@extends('parentprofil')
+@extends('transaction')
 
 @section('content')
 <section>
@@ -19,7 +19,7 @@
                 <p class="pb-3">
 
                 </p>
-                <form id="contact-form" method="post" autocomplete="off">
+                <form id="contact-form" method="post" autocomplete="off" action="">
                   <div class="card-body p-0 my-3">
                     <div class="row">
                       <div class="col-md-6">
@@ -30,8 +30,14 @@
                       </div>
                       <div class="col-md-6 ps-md-2">
                         <div class="input-group input-group-static mb-4">
-                          <label>Pays</label>
-                          <input type="text" class="form-control" placeholder="Nom du Pays">
+                          <label>Contacts</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option>christopher</option>
+                            <option>marc</option>
+                            <option>pascal</option>
+                            <option>maurice</option>
+                            <option>doha</option>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -49,24 +55,10 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="input-group input-group-static mb-4">
-                            <label>Type de Transaction</label>
-                            <input type="text" class="form-control" placeholder="Type de Transaction">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group input-group-static mb-4">
-                              <label>Nom du receveur</label>
-                              <input type="text" class="form-control" placeholder="Nom du receveur">
-                            </div>
-                          </div>
-
-                      </div>
+                    
                     <div class="row">
                       <div class="col-md-12 text-center">
-                        <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">fait !</button>
+                        <a onclick="addtransaction()" class="btn bg-gradient-primary mt-3 mb-0">envoi</a>
                       </div>
                     </div>
                   </div>

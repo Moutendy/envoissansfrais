@@ -71,4 +71,11 @@ class TransactionController extends Controller
         //
         return $this->transactionService->delete($id);
     }
+
+
+    public function addtransaction($userId)
+    {
+        //
+         return view('layouts.addtransaction',compact('userId'));
+    }
 }

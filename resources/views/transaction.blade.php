@@ -30,6 +30,6 @@
     </div>
 
 </body>
-<script src="{{ asset('js/post/updatepost.js') }}"></script>
 
+<script src="{{ asset('js/transaction/transaction.js') }}"></script>
 </html>
