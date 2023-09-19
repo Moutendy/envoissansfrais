@@ -45,3 +45,6 @@ Route::get('/message/indexInbox/{reci}/{me}',[MessageController::class,'indexInb
 
 Route::resource('/contact',ContactController::class);
 
+
+
+

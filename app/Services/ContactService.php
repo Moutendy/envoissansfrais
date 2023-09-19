@@ -24,7 +24,7 @@ class ContactService
     public function show()
     {
 
-        $contact = DB::select('SELECT email,image_profil,name FROM `contact_models` as ct join users as us on ct.contact = us.id ');
+        $contact = DB::select('SELECT email,image_profil,name FROM `users` as us join contact_models as ct on ct.contact = us.id ');
 
 
         if($contact)

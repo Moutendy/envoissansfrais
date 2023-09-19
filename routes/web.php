@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{PostController,TransactionController};
+use App\Http\Controllers\{PostController,TransactionController,ContactController};
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +47,4 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('layouts.register');
 });
+Route::get('/contact',[ContactController::class,'index']);
