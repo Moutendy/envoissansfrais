@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{PostController,TransactionController,ContactController};
+use App\Http\Controllers\{ValidationController,PostController,TransactionController,ContactController};
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +21,14 @@ Route::get('/profil', function () {
     return view('layouts.profil');
 });
 
-Route::get('/transaction', function () {
-    return view('layouts.transaction');
-});
-Route::get('/validation', function () {
-    return view('layouts.validation');
-});
+Route::get('/transaction',[TransactionController::class, 'showUserSend']);
+
+Route::get('/validation',[ValidationController::class,'validation'] );
 Route::get('/addtransaction/{userId}', [TransactionController::class, 'addtransaction'])->name('addtransaction');
+
+Route::post('/storeTransaction/{userId}', [TransactionController::class, 'store'])->name('storeTransaction');
+Route::get('/accepttransaction/{userId}', [TransactionController::class, 'update'])->name('updatetransaction');
+
 
 Route::get('/addpost', function () {
     return view('layouts.addpost');

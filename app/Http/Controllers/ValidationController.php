@@ -71,4 +71,10 @@ class ValidationController extends Controller
         //
         return $this->validationService->delete($id);
     }
+
+    public function validation()
+    {
+       $validation = $this->validationService->showAgencier();
+    return view('layouts.validation',compact('validation'));
+    }
 }

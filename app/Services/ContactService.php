@@ -24,12 +24,12 @@ class ContactService
     public function show()
     {
 
-        $contact = DB::select('SELECT email,image_profil,name FROM `users` as us join contact_models as ct on ct.contact = us.id ');
+        $contact = DB::select('SELECT email,image_profil,name,us.id,us.tel FROM `users` as us join contact_models as ct on ct.contact = us.id where ct.user = 2');
 
 
         if($contact)
         {
-            return response(['contact'=>$contact],200);
+            return $contact;
         }
     }
 

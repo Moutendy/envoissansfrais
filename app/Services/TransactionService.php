@@ -3,6 +3,7 @@
 namespace App\Services;
 use Illuminate\Http\Request;
 use App\Models\{transactionModel};
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class TransactionService
@@ -23,9 +24,9 @@ class TransactionService
         if($transaction)
         {
             $this->validationService->store($transaction);
-            return response(['message'=>'Save transaction.'],200);
+            return redirect()->back()->with('message', 'Votre message ici');;
         }
-        return response(['message'=>'not Save transaction.'],400);
+        return redirect()->back()->with('message', 'Votre message ici');;
     }
      public function show()
     {
@@ -46,10 +47,11 @@ class TransactionService
     }
     public function update(Request $request,$id)
     {
+
         $transactionModel = transactionModel::find($id);
         if($transactionModel->update($request->all()))
         {
-            return Response('success Update transaction',200);
+            return redirect()->back()->with("modifier");
         }
 
         return response(['transaction'=>'not Update transaction.'],401);
@@ -63,5 +65,19 @@ class TransactionService
             return response(['transaction'=>'transaction not found.'+ $transactionModel->delete()],200);
         }
         return response(['transaction'=>'transaction not found.'],401);
+    }
+    public function showUserSend()
+    {
+        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_send = us.id where us.id = 2');
+    }
+
+    public function showUserReceiver()
+    {
+        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_receiver = us.id where us.id = 2');
+    }
+
+    public function showUserAgencier()
+    {
+        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_agencier = us.id where us.id = 2');
     }
 }

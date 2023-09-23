@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\TransactionService;
+use App\Services\{TransactionService,ContactService};
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
 
     private TransactionService $transactionService;
-    public function __construct(TransactionService $transactionService)
+
+    private ContactService $contactService;
+
+    public function __construct(TransactionService $transactionService,ContactService $contactService)
     {
         $this->transactionService = $transactionService;
+        $this->contactService = $contactService;
     }
     /**
      * Display a listing of the resource.
@@ -29,9 +33,10 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$userId)
     {
-        //
+        $request['user_send'] = $userId;
+        $request['accept_transaction'] = 0;
         return $this->transactionService->store($request);
     }
 
@@ -57,6 +62,7 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request['accept_transaction'] = 1;
         return $this->transactionService->update($request, $id);
     }
 
@@ -75,7 +81,16 @@ class TransactionController extends Controller
 
     public function addtransaction($userId)
     {
-        //
-         return view('layouts.addtransaction',compact('userId'));
+         $listContact = $this->contactService->show();
+         return view('layouts.addtransaction',compact('userId','listContact'));
     }
+
+    public function showUserSend()
+    {
+        //
+        $showUserSendTransaction = $this->transactionService->showUserAgencier();
+
+        return view('layouts.transaction',compact('showUserSendTransaction'));
+    }
+
 }

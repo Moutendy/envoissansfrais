@@ -17,22 +17,29 @@
               </div>
               <div class="card-body">
                 <p class="pb-3">
-{{ $userId }}
+
                 </p>
-                <form id="contact-form">
+                <form id="contact-form" method="post" action="{{route('storeTransaction',4)}}">
+                    {{ csrf_field() }}
                   <div class="card-body p-0 my-3">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="input-group input-group-static mb-4">
                           <label>Description</label>
-                          <input type="text" id="desc" class="form-control" placeholder="Description">
+                          <input type="text" name="desc" class="form-control" placeholder="Description">
                         </div>
                       </div>
+
                       <div class="col-md-6 ps-md-2">
                         <div class="input-group input-group-static mb-4">
                           <label>Contacts</label>
-                          <select name="contact" onchange="showUser(this.value)" class="form-control" id="exampleFormControlSelect1">
-                          </select>
+                          <select name="user_receiver"  class="form-control" >
+                            @foreach($listContact as $contact)
+                           <option value="{{ $contact->id }}">
+                            {{ $contact->name }}
+                           </option>
+                            @endforeach
+                        </select>
                         </div>
                       </div>
                     </div>
@@ -40,20 +47,26 @@
                         <div class="col-md-6">
                           <div class="input-group input-group-static mb-4">
                             <label>Date début</label>
-                            <input type="date"  id="datedebut" class="form-control" >
+                            <input name="start"  type="date"  id="datedebut" class="form-control" >
                           </div>
                         </div>
                         <div class="col-md-6 ps-md-2">
                           <div class="input-group input-group-static mb-4">
                             <label>Date fin</label>
-                            <input type="date" id="datefin"  class="form-control">
+                            <input name="end" type="date" id="datefin"  class="form-control">
                           </div>
                         </div>
                       </div>
 
                     <div class="row">
-                      <div class="col-md-12 text-center">
-                        <a onclick="addtransaction()" class="btn bg-gradient-primary mt-3 mb-0">envoi</a>
+                        <div class="col-md-6 ps-md-2">
+                            <div class="input-group input-group-static mb-4">
+                              <label>Agencier</label>
+                              <input name="user_agencier" type="text"  value="{{ $userId }}" class="form-control" >
+                            </div>
+                          </div>
+                      <div class="col-md-6">
+                        <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Ajouter !</button>
                       </div>
                     </div>
                   </div>

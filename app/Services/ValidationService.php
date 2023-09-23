@@ -3,7 +3,7 @@
 namespace App\Services;
 use Illuminate\Http\Request;
 use App\Models\{validationModel};
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class ValidationService
  * @package App\Services
@@ -66,5 +66,9 @@ class ValidationService
             return response(['validation'=>validationModel::destroy($id)],200);
         }
         return response(['validation'=>'validation not found.'],401);
+    }
+    public function showAgencier()
+    {
+        return DB::select('SELECT ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , rl.name as rolename, us.email,us.image_profil,us.name,us.id,us.tel,vt.desc FROM `users` as us join validation_models as vt on vt.user_agencier = us.id join role_models as rl on rl.id = us.role_model join transaction_models as ts on ts.id = vt.transaction_model where us.id = 2');
     }
 }

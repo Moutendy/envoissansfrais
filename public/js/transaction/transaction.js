@@ -1,6 +1,6 @@
 window.onload = showContact;
 
-
+var xhr = new XMLHttpRequest();
 var select = document.getElementById("exampleFormControlSelect1");
 var optionElement = document.getElementById("option");
 var contactchoose;
@@ -12,7 +12,7 @@ var datedebut = document.getElementById("datedebut");
 var desc = document.getElementById("desc");
 
 function showContact() {
-    var xhr = new XMLHttpRequest();
+
     xhr.open("get", "/contact", true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -33,7 +33,8 @@ function showContact() {
                 var optionElement = document.createElement("option");
                 var x = options.contact[i];
                 optionElement.textContent = x.name;
-                console.log(x.name);
+                optionElement.value = x.id;
+
                 select.appendChild(optionElement);
 
             }
@@ -41,24 +42,4 @@ function showContact() {
         }
     };
     xhr.send();
-}
-
-
-function showUser(str) {
-    if (str == "") {
-
-
-    } else {
-
-        contactchoose = str;
-
-
-    }
-}
-
-function addtransaction() {
-    console.log(contactchoose);
-    console.log(desc.value);
-    console.log(datedebut.value);
-    console.log(datefin.value);
 }

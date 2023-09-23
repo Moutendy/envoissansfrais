@@ -15,6 +15,7 @@ class transactionModel extends Model
         'desc',
         'start',
         'end',
+        'accept_transaction'
     ];
     public function user()
     {
