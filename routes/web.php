@@ -21,9 +21,26 @@ Route::get('/profil', function () {
     return view('layouts.profil');
 });
 
+Route::get('/transactionclient', function () {
+    return view('layouts.transactionclient');
+});
+
+Route::get('/transactionreceiver', function () {
+    return view('layouts.transactionreceiver');
+});
 Route::get('/transaction',[TransactionController::class, 'showUserSend']);
 
 Route::get('/validation',[ValidationController::class,'validation'] );
+
+Route::get('/validationclient', function () {
+    return view('layouts.validationclient');
+});
+
+Route::get('/validationreceiver', function () {
+    return view('layouts.validationreceiver');
+});
+
+
 Route::get('/addtransaction/{userId}', [TransactionController::class, 'addtransaction'])->name('addtransaction');
 
 Route::post('/storeTransaction/{userId}', [TransactionController::class, 'store'])->name('storeTransaction');

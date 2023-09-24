@@ -11,8 +11,11 @@
     <!-- START Testimonials w/ user image & text & info -->
     <section class="py-sm-7 py-5 position-relative">
         <div class="container">
+            <div class="mt-n8 mt-md-n9 text-center">
+                <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../assets/img/bruce-mars.jpg" alt="bruce" loading="lazy">
+            </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h3 class="mb-0">Transaction</h3>
+                <h3 class="mb-0">Transaction Agencier</h3>
                 <div class="d-block">
                     <a href="addtransaction" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</a>
                 </div>
