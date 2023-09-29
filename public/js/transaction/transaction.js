@@ -43,3 +43,5 @@ function showContact() {
     };
     xhr.send();
 }
+var agn = document.getElementById("agn");
+agn.style.display = "none";

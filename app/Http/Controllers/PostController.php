@@ -58,7 +58,7 @@ class PostController extends Controller
     {
         //
         return $this->postService->update($request,$id);
-    
+
     }
 
     /**
@@ -84,5 +84,10 @@ class PostController extends Controller
     {
         //
          return view('layouts.updatepost',compact('id'));
+    }
+
+    public function addviewpost()
+    {
+        return view('layouts.addpost');
     }
 }

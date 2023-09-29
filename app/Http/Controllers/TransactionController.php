@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\{TransactionService,ContactService};
+use App\Services\{UserService,TransactionService,ContactService,RoleService};
 use Illuminate\Http\Request;
-
+use App\Models\{User};
 class TransactionController extends Controller
 {
 
@@ -11,10 +11,18 @@ class TransactionController extends Controller
 
     private ContactService $contactService;
 
-    public function __construct(TransactionService $transactionService,ContactService $contactService)
+    private RoleService $roleService;
+
+    private UserService $userService;
+
+    public $showTransactions;
+
+    public function __construct(UserService $userService,RoleService $roleService,TransactionService $transactionService,ContactService $contactService)
     {
         $this->transactionService = $transactionService;
         $this->contactService = $contactService;
+        $this->roleService = $roleService;
+        $this->userService = $userService;
     }
     /**
      * Display a listing of the resource.
@@ -33,9 +41,9 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$userId)
+    public function store(Request $request)
     {
-        $request['user_send'] = $userId;
+        $request['user_send'] = auth()->user()->id;
         $request['accept_transaction'] = 0;
         return $this->transactionService->store($request);
     }
@@ -81,16 +89,34 @@ class TransactionController extends Controller
 
     public function addtransaction($userId)
     {
+         $users = User::find($userId);;
          $listContact = $this->contactService->show();
-         return view('layouts.addtransaction',compact('userId','listContact'));
+         return view('layouts.addtransaction',compact('users','listContact'));
     }
 
     public function showUserSend()
     {
         //
-        $showUserSendTransaction = $this->transactionService->showUserAgencier();
 
-        return view('layouts.transaction',compact('showUserSendTransaction'));
+      $role = $this->roleService->showById(auth()->user()->role_model);
+
+
+        if($role->name == 'agencier')
+        {
+           $this->showTransactions = $this->transactionService->showUserAgencier();
+        }
+        if($role->name == 'client')
+        {
+           $this->showTransactions = $this->transactionService->showUserSend();
+
+        }
+
+        // if($role->name == 'agencier')
+        // {
+        //    $this->showTransactions = $this->transactionService->showUserAgencier();
+        // }
+        $transactionSend = $this->showTransactions;
+        return view('layouts.transaction',compact('transactionSend'));
     }
 
 }

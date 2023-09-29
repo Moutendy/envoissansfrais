@@ -13,40 +13,58 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form" class="text-start">
+              <form role="form" class="text-start" method="POST" action="{{ route('register') }}">
                 <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control">
+
+                    <input type="text" class="form-control" name="name" :value="old('name')" placeholder="Nom">
                 </div>
                 <div class="input-group input-group-outline my-3">
-                  <label class="form-label">Email</label>
-                  <input type="email" class="form-control">
+
+                  <input type="email" class="form-control" name="email" :value="old('email')" placeholder="Email">
                 </div>
                 <div class="input-group input-group-outline mb-3">
-                  <label class="form-label">Password</label>
-                  <input type="password" class="form-control">
+
+                  <input type="password" class="form-control" name="password" :value="old('password')" placeholder="Mot de Passe">
                 </div>
+                <div class="input-group input-group-outline mb-3">
+
+                    <input type="password" class="form-control" name="password_confirmation" :value="old('password_confirmation')" placeholder="Confirmation Mot de Passe" >
+                  </div>
                 <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Tel:</label>
-                    <input type="tel" class="form-control">
+
+                    <input type="number" class="form-control" name="tel" :value="old('tel')" placeholder="Tel" required>
                   </div>
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Pays:</label>
-                    <input type="text" class="form-control">
+
+                    <input type="text" class="form-control" name="pays" :value="old('pays')" placeholder="Pays">
                   </div>
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Ville:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="ville" :value="old('ville')" placeholder="Ville">
+                  </div>
+                  <div class="input-group input-group-static mb-4">
+                    <label>Role(client ou agencier)</label>
+                    <select name="role_model"  class="form-control" required>
+                      @foreach($roles as $role)
+                     <option value="{{ $role->id }}">
+                      {{ $role->name }}
+                     </option>
+                      @endforeach
+                  </select>
                   </div>
                 <div class="form-check form-switch d-flex align-items-center mb-3">
                   <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                   <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn bg-gradient-success w-100 my-4 mb-2">Sign in</button>
+                  <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Sign in</button>
                 </div>
                 <p class="mt-4 text-sm text-center">
-                  Don't have an account?
+
+                  <div class="flex items-center justify-end mt-4">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                        {{ __('Already registered?') }}
+                    </a>
+                </div>
                 </p>
               </form>
             </div>

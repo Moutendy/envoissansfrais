@@ -34,8 +34,9 @@
           </tr>
         </thead>
         <tbody>
-            @if (!@empty($showUserSendTransaction))
-            @foreach ($showUserSendTransaction as $sendTransactions )
+            @if (!@empty($transactionSend))
+            {{ $transactionSend }}
+            @foreach ($transactionSend as $sendTransactions )
             <tr>
                 <td>
                   <div class="d-flex px-2 py-1">

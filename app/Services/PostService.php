@@ -45,9 +45,15 @@ class PostService
     }
         $post = PostModel::create([
             'desc' => $attrs['desc'],
-            'user' => 2,
+            'user' => auth()->user()->id,
             'image' => URL::to('/').'/storage/'.$path.'/'.$nameimage,
         ]);
+
+        if(!empty($post))
+        {
+
+            return view('layouts.post');
+        }
         return back();
     }
 
@@ -92,14 +98,14 @@ class PostService
         if (!$post) {
             return response(['message' => 'Aucun post avec cette id.'], 404);
         }
-        if ($post->user != 2) {
+        if ($post->user != auth()->user()->id) {
             return response(['message' => 'Permission denied.'], 403);
         }
-        if ($post->user == 2) {
+        if ($post->user == auth()->user()->id) {
             $post->delete();
             return response(['message' => 'post supprimé'], 201);
         }
-        return response(['message' => 2], 201);
+        return response(['message' => auth()->user()->id], 201);
     }
 
 
@@ -109,13 +115,13 @@ class PostService
         if (!$post) {
             return response(['message' => 'Aucun post avec cette id.'], 404);
         }
-        if ($post->user != 2) {
+        if ($post->user != auth()->user()->id) {
             return response(['message' => 'Permission denied.'], 403);
         }
-        if ($post->user == 2) {
+        if ($post->user == auth()->user()->id) {
 
             return response($post, 201);
         }
-        return response(['message' => 2], 201);
+        return response(['message' => auth()->user()], 201);
     }
 }

@@ -68,16 +68,16 @@ class TransactionService
     }
     public function showUserSend()
     {
-        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_send = us.id where us.id = 2');
+        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_send = us.id where us.id = :id',['id'=>auth()->user()->id]);
     }
 
     public function showUserReceiver()
     {
-        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_receiver = us.id where us.id = 2');
+        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_receiver = us.id where us.id = :id',['id'=>auth()->user()->id]);
     }
 
     public function showUserAgencier()
     {
-        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_agencier = us.id where us.id = 2');
+        return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_agencier = us.id where us.id = :id',['id'=>auth()->user()->id]);
     }
 }

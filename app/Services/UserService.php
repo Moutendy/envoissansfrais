@@ -35,7 +35,7 @@ class UserService
         $user = User::find($id);
         if($user)
         {
-            return response(['user'=>$user],200);
+            return response($user);
         }
         return response(['user'=>'no Save user.'],401);
     }

@@ -19,7 +19,7 @@
                 <p class="pb-3">
 
                 </p>
-                <form id="contact-form" method="post" action="{{route('storeTransaction',4)}}">
+                <form id="contact-form" method="post" action="{{route('storeTransaction')}}">
                     {{ csrf_field() }}
                   <div class="card-body p-0 my-3">
                     <div class="row">
@@ -34,11 +34,18 @@
                         <div class="input-group input-group-static mb-4">
                           <label>Contacts</label>
                           <select name="user_receiver"  class="form-control" >
+                            @if ($listContact)
                             @foreach($listContact as $contact)
-                           <option value="{{ $contact->id }}">
-                            {{ $contact->name }}
-                           </option>
-                            @endforeach
+                            <option value="{{ $contact->id }}">
+                             {{ $contact->name }}
+                            </option>
+                             @endforeach
+                            @else
+                            <option >
+                                Aucun contact
+                            </option>
+                            @endif
+
                         </select>
                         </div>
                       </div>
@@ -61,8 +68,9 @@
                     <div class="row">
                         <div class="col-md-6 ps-md-2">
                             <div class="input-group input-group-static mb-4">
-                              <label>Agencier</label>
-                              <input name="user_agencier" type="text"  value="{{ $userId }}" class="form-control" >
+
+                                <label>Nom de l'agencier : <b>{{ $users->name }}</b></label>
+                                <input name="user_agencier" type="text" value="{{ $users->id }}" class="form-control" disabled  id="agn">
                             </div>
                           </div>
                       <div class="col-md-6">

@@ -3,11 +3,13 @@ var updatepost = document.createElement("li");
 var deletepost = document.createElement("li");
 var id_global;
 var icon_close = document.createElement("i");
-var card_image = document.createElement("div");
+var card_update_Image;
+
 var user;
+var class_iduser = document.getElementById("class_iduser").textContent;
+document.getElementById("class_iduser").style.display = "none";
 window.onload = function() {
     afficherDonnees();
-
 };
 
 function afficherDonnees() {
@@ -44,7 +46,8 @@ function afficherDonnees() {
 
                 var header = document.createElement("div");
                 header.classList.add("header");
-
+                var card_image = document.createElement("div");
+                card_update_Image = card_image;
                 var media = document.createElement("div");
                 media.classList.add("media");
 
@@ -61,8 +64,6 @@ function afficherDonnees() {
                 var subtitle = document.createElement("div");
                 subtitle.classList.add("subtitle");
                 subtitle.classList.add("is-6");
-
-
 
                 var figure = document.createElement("figure");
                 figure.classList.add("image");
@@ -86,9 +87,6 @@ function afficherDonnees() {
                 icon_close.classList.add("fa-times");
                 icon_close.textContent = "+";
 
-
-
-
                 menu(icon_menu, donnees[i].id);
                 menuicon.appendChild(icon_span);
                 icon_span.appendChild(icon_close);
@@ -97,13 +95,13 @@ function afficherDonnees() {
                 media.appendChild(headerleft);
                 media.appendChild(post_name);
                 headerleft.appendChild(figure);
-                headerleft.appendChild(icon_menu);
+                if (donnees[i].user.id == class_iduser) {
+                    headerleft.appendChild(icon_menu);
+                }
+
                 figure.appendChild(imghead);
                 post_name.appendChild(title_is_5);
                 post_name.appendChild(subtitle);
-
-
-
 
                 card_image.classList.add("card-image");
                 var title = document.createElement("div");
@@ -116,24 +114,18 @@ function afficherDonnees() {
                 img.classList.add("imagepost");
                 img.src = donnees[i].image;
 
-
                 card_image.appendChild(title);
                 figurepost.appendChild(img);
                 card_image.appendChild(figurepost);
 
                 card.appendChild(header);
                 card.appendChild(card_image);
-
-
                 cardContainer.appendChild(card);
             }
 
-
         }
     };
-
     xhr.open('GET', '/api/post', true);
-
     xhr.send();
 }
 
@@ -186,7 +178,7 @@ updatepost.addEventListener("click", function(event) {
 });
 
 function transaction(userId) {
-    card_image.addEventListener('click', function(event) {
+    card_update_Image.addEventListener('click', function(event) {
         event.preventDefault();
         const redirectionlien = '/addtransaction/' + userId; // Remplacez par l'URL de destination
 
