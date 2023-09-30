@@ -1,5 +1,4 @@
 @extends('parentprofil')
-
 @section('content')
 <header>
     <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
@@ -24,7 +23,7 @@
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <h3 class="mb-0">{{ Auth::user()->name }}</h3>
                                     <div class="d-block">
-                                        <button type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0">Contacts</button>
+                                        <a href="{{ route('contactshow') }}"class="btn btn-sm btn-outline-info text-nowrap mb-0">Contacts</a>
                                     </div>
 
                                     @if (!empty($role) && $role->name == 'agencier')
@@ -69,26 +68,32 @@
                     </div>
                 </div>
             </div>
-            <div class="page-header min-vh-100 nature" style="background-image: url({{ Auth::user()->image_desc }}&#39;);" loading="lazy">
-                <div class="card">
+            <div class="col-auto">
 
-                    <div class="row mt-10">
-                        <a href="" class="btn rigth-hptext-white shadow-none mt-4"></a>
+                <span>Contact(s)</span>
+            </div>
+            <div class="page-header min-vh-100" loading="lazy">
 
-                      <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
-                        <h1 class="text-white mb-4"></h1>
-                        <p class="text-white opacity-8 lead pe-5 me-5"> </p>
-                        <div class="buttons mt-10">
+                @if (!empty($contactNewBysUser))
 
+                @foreach ($contactNewBysUser as $contactNewBysUsers)
+               <a href="{{ route('addcontact',$contactNewBysUsers->id) }}">
 
-                          <button class="btn text-black btn-white shadow-none mt-4" onclick="myShow.previous()">Previous image</button>
-                          <button class="btn text-black btn-white shadow-none mt-4" onclick="myShow.next()">Next image</button>
+                <div class="card mt-4 nature">
+                    <!-- Card image -->
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                      <img class="border-radius-lg w-100 img" src="{{ $contactNewBysUsers->image_profil }}" alt="Image placeholder">
+                      <!-- List group -->
 
-                        </div>
+                     </div>
+                    <!-- Card body -->
+                    <div class="card-body">
 
-                      </div>
                     </div>
-                  </div>
+                 </div>
+            </a>
+                @endforeach
+                  @endif
             </div>
         </section>
         <!-- END Testimonials w/ user image & text & info -->
@@ -98,3 +103,4 @@
     </div>
 
 @endsection
+

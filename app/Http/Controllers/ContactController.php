@@ -31,9 +31,10 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
         //
+        $request['contact'] = $id;
         return $this->contactService->store($request);
     }
 
@@ -42,5 +43,11 @@ class ContactController extends Controller
     {
         //
         return $this->contactService->delete($id);
+    }
+
+    public function contactByUser()
+    {
+        $contacts = $this->contactService->show();
+        return view('layouts.contact',compact('contacts'));
     }
 }

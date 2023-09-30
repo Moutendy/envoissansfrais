@@ -47,6 +47,10 @@ Route::middleware(['auth'])->group(function () {
      //contact
     Route::get('/contact',[ContactController::class,'index']);
 
+    Route::get('/contact/{id}',[ContactController::class,'store'])->name('addcontact');
+    Route::get('/contactshow',[ContactController::class,'contactByUser'])->name('contactshow');
+
+
     //validation
     Route::get('/validation',[ValidationController::class,'validation'] );
 

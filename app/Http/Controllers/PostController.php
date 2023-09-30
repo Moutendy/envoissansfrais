@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\{PostService,RoleService,TransactionService,ContactService,ValidationService};
+use App\Services\{UserService,PostService,RoleService,TransactionService,ContactService,ValidationService};
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,17 +13,21 @@ class PostController extends Controller
     private TransactionService $transactionService;
     private ContactService $contactService;
     private ValidationService $validationService;
+    private UserService $userService;
     public $showTransactions;
     public $postBysUser;
     public $pvalBysUser;
     public $contactBysUser;
-    public function __construct(ContactService $contactService,ValidationService $validationService,TransactionService $transactionService,RoleService $roleService,PostService $postService)
+
+
+    public function __construct(UserService $userService,ContactService $contactService,ValidationService $validationService,TransactionService $transactionService,RoleService $roleService,PostService $postService)
     {
         $this->postService = $postService;
         $this->transactionService = $transactionService;
         $this->roleService = $roleService;
         $this->validationService = $validationService;
         $this->contactService = $contactService;
+        $this->userService = $userService;
     }
     /**
      * Display a listing of the resource.
@@ -107,8 +111,9 @@ class PostController extends Controller
         $role = $this->roleService->showById(auth()->user()->role_model);
 
         $this->postBysUser = $this->postService->postByUser();
-       $this->pvalBysUser = $this->validationService->validationTransByUser();
-      $this->contactBysUser = $this->contactService->show();
+        $this->pvalBysUser = $this->validationService->validationTransByUser();
+        $this->contactBysUser = $this->contactService->show();
+        $contactNewBysUser = $this->userService->showUser();
 
         if($role->name == 'agencier')
         {
@@ -124,7 +129,8 @@ class PostController extends Controller
         $post =  count($this->postBysUser);
         $val = count($this->pvalBysUser);
         $cont = count($this->contactBysUser);
-        return view('layouts.profil',compact('transactionSend','post','val','role','cont'));
+        return view('layouts.profil',compact('transactionSend','post','val','role','cont','contactNewBysUser'));
+
     }
 
     public function home() {

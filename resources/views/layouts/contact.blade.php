@@ -22,6 +22,14 @@
                                 <a href="addtransaction" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</a>
                             </div>
                         </div>
+                        @if ($contacts)
+                        @foreach($contacts as $contact)
+                        <option value="{{ $contact->id }}">
+                         {{ $contact->name }}
+                        </option>
+                         @endforeach
+                        @endif
+
                         <div class="row py-5">
                             <div class="card">
                              <div class="table-responsive">

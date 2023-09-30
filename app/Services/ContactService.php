@@ -12,10 +12,11 @@ class ContactService
 {
     public function store(Request $request)
     {
+        $request['user'] = auth()->user()->id;
         $contact = ContactModel::create($request->all());
         if($contact)
         {
-            return response(['conact'=>'Add contact.'],200);
+            return back();
         }
         return response(['contact'=>'not Add contact.'],400);
     }
@@ -23,7 +24,6 @@ class ContactService
 
     public function show()
     {
-
         return DB::select('SELECT email,image_profil,name,us.id,us.tel FROM `users` as us join contact_models as ct on ct.contact = us.id where ct.user =:id',['id'=>auth()->user()->id]);
     }
 
@@ -37,4 +37,6 @@ class ContactService
         }
         return response(['contact'=>'contact not found.'],401);
     }
+
+
 }

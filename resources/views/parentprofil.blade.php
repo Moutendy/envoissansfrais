@@ -21,15 +21,22 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-    
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <style>
+    .img{
+        width: 626px;
+        height: 1126px;
+    }
+    </style>
 </head>
 
 <body>
     <div class="profilbody">
         @yield('content')
     </div>
-
 </body>
 <script src="{{ asset('js/post/updatepost.js') }}"></script>
+
+
 
 </html>

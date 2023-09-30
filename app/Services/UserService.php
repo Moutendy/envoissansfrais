@@ -59,4 +59,11 @@ class UserService
         }
         return response(['user'=>'user not found.'],401);
     }
+
+    public function showUser()
+    {
+
+        return User::orderBy('created_at', 'desc')->get();
+
+    }
 }

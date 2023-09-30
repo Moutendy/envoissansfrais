@@ -1,3 +1,5 @@
+w3.slideshow(".nature", 2000);
+
 var url = window.location.href;
 var imageupdatefile;
 // Rechercher l'indice du dernier "/" dans l'URL
@@ -7,6 +9,7 @@ var lastSlashIndex = url.lastIndexOf("/");
 var id = url.slice(lastSlashIndex + 1);
 
 let file;
+
 
 // Vous pouvez maintenant utiliser la variable "id" comme bon vous semble
 
@@ -78,4 +81,3 @@ function filedemande(event) {
         file = event.target.files[i];
     }
 }
-myShow = w3.slideshow(".nature", 0);
