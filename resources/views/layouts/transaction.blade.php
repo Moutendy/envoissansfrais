@@ -3,7 +3,7 @@
 @section('content')
 
 <header>
-    <div class="page-header min-height-400" style="background-image: url('../assets/img/city-profile.jpg');" loading="lazy">
+    <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
 </header>
@@ -12,10 +12,12 @@
     <section class="py-sm-7 py-5 position-relative">
         <div class="container">
             <div class="mt-n8 mt-md-n9 text-center">
-                <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../assets/img/bruce-mars.jpg" alt="bruce" loading="lazy">
+                <a href="{{route('home')}}">
+                <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="bruce" loading="lazy">
+                </a>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h3 class="mb-0">Transaction Agencier</h3>
+                <h3 class="mb-0">Transaction</h3>
                 <div class="d-block">
                     <a href="addtransaction" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</a>
                 </div>
@@ -35,7 +37,7 @@
         </thead>
         <tbody>
             @if (!@empty($transactionSend))
-            {{ $transactionSend }}
+
             @foreach ($transactionSend as $sendTransactions )
             <tr>
                 <td>
@@ -69,24 +71,27 @@
                   </td>
 
                 <td class="align-middle">
+                    @if (!empty($role))
+                    @if ($role->name == 'agencier')
                     @if($sendTransactions->accept_transaction == 0)
                     <a href="{{route('updatetransaction',$sendTransactions->id )}}" class="badge bg-gradient-success" data-toggle="tooltip" data-original-title="Edit user">
                         Accepter la transaction
                       </a>
                     @elseif($sendTransactions->accept_transaction == 1)
-
+                    <a  class="badge bg-gradient-success" data-toggle="tooltip" data-original-title="Edit user">
+                        transaction en cours
+                    </a>
+                    @endif
+                    @endif
+                    @elseif (empty($role))
 
                     @endif
-
                 </td>
               </tr>
             @endforeach
-
+            @elseif(empty($transactionSend))
+            Aucune Transaction
             @endif
-
-
-
-
         </tbody>
       </table>
     </div>

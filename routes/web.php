@@ -27,17 +27,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', function () {
-    return view('layouts.post');
-})->middleware(['auth'])->name('home');
+Route::get('/home', [PostController::class, 'home'])->middleware(['auth'])->name('home');
 
 
 require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function () {
     //profil
-    Route::get('/profil', function () {
-        return view('layouts.profil');
-    });
+    Route::get('/profilUser', [PostController::class, 'profil'])->name('profil');
 
     //post
     Route::post('/post/{id}', [PostController::class, 'update'])->name('update');
@@ -63,16 +59,12 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //transaction
-    Route::get('/transactionclient', function () {
-        return view('layouts.transactionclient');
-    });
+    Route::get('/transactionclient',[TransactionController::class, 'transactionclient'])->name('transactionclient');
 
-    Route::get('/transactionreceiver', function () {
-        return view('layouts.transactionreceiver');
-    });
-    Route::get('/transaction',[TransactionController::class, 'showUserSend']);
+    Route::get('/transactionreceiver',[TransactionController::class, 'transactionreceiver'])->name('transactionreceiver');
+    Route::get('/transaction', [TransactionController::class, 'transactionclient'])->name('transaction');
     Route::get('/addtransaction/{userId}', [TransactionController::class, 'addtransaction'])->name('addtransaction');
     Route::post('/storeTransaction', [TransactionController::class, 'store'])->name('storeTransaction');
     Route::get('/accepttransaction/{userId}', [TransactionController::class, 'update'])->name('updatetransaction');
-
+    Route::get('/transactionreceiver',[TransactionController::class, 'transactionreceiver'])->name('transactionreceiver');
 });

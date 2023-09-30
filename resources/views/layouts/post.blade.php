@@ -19,14 +19,25 @@
                     menu
                 </a>
                 <div class="navbar-dropdown">
+                    @if (!empty($role))
+                    @if ($role->name == 'agencier')
                     <a class="navbar-item" href="{{ route('addpost') }}">
-                    Add Post
-                    </a>
-                    <a class="navbar-item">
+                        Add Post
+                        </a>
+                    @endif
+
+                    @elseif(empty($role))
+                    
+                    @endif
+
+                    <a class="navbar-item" href="{{ route('profil') }}">
                     Profile
                     </a>
-                    <a class="navbar-item">
-                    Settings
+                    <a class="navbar-item" href="{{ route('transaction') }}">
+                    Transaction
+                    </a>
+                    <a class="navbar-item" href="{{ route('transactionreceiver') }}">
+                        Transaction Receiver
                     </a>
                     <hr class="navbar-divider">
 

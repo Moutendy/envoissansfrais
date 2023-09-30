@@ -83,9 +83,8 @@ class PostService
                 $request->file('image')->move('storage\app\public\posts',$nameimage);
 
                 $post->update(['image'=>URL::to('/').'/storage/'.$path.'/'.$nameimage]);
-
         }
-        else  if(!Empty($request->desc)){
+        else if(!Empty($request->desc)){
             $post->update([
             'desc'=>$request->desc]);
         }
@@ -124,4 +123,9 @@ class PostService
         }
         return response(['message' => auth()->user()], 201);
     }
+    public function postByUser()
+    {
+        return DB::select('SELECT ps.id ,ps.image as image_post,ps.created_at ,ps.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join post_models as ps on ps.user = us.id where us.id = :id',['id'=>auth()->user()->id]);
+    }
+
 }

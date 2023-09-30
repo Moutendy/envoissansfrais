@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\PostService;
+use App\Services\{PostService,RoleService,TransactionService,ContactService,ValidationService};
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -9,9 +9,21 @@ class PostController extends Controller
 
 
     private PostService $postService;
-    public function __construct(PostService $postService)
+    private RoleService $roleService;
+    private TransactionService $transactionService;
+    private ContactService $contactService;
+    private ValidationService $validationService;
+    public $showTransactions;
+    public $postBysUser;
+    public $pvalBysUser;
+    public $contactBysUser;
+    public function __construct(ContactService $contactService,ValidationService $validationService,TransactionService $transactionService,RoleService $roleService,PostService $postService)
     {
         $this->postService = $postService;
+        $this->transactionService = $transactionService;
+        $this->roleService = $roleService;
+        $this->validationService = $validationService;
+        $this->contactService = $contactService;
     }
     /**
      * Display a listing of the resource.
@@ -89,5 +101,34 @@ class PostController extends Controller
     public function addviewpost()
     {
         return view('layouts.addpost');
+    }
+    public function profil()
+    {
+        $role = $this->roleService->showById(auth()->user()->role_model);
+
+        $this->postBysUser = $this->postService->postByUser();
+       $this->pvalBysUser = $this->validationService->validationTransByUser();
+      $this->contactBysUser = $this->contactService->show();
+
+        if($role->name == 'agencier')
+        {
+           $this->showTransactions = $this->transactionService->showUserAgencier();
+        }
+        if($role->name == 'client')
+        {
+           $this->showTransactions = $this->transactionService->showUserSend();
+
+        }
+
+        $transactionSend = count($this->showTransactions);
+        $post =  count($this->postBysUser);
+        $val = count($this->pvalBysUser);
+        $cont = count($this->contactBysUser);
+        return view('layouts.profil',compact('transactionSend','post','val','role','cont'));
+    }
+
+    public function home() {
+        $role = $this->roleService->showById(auth()->user()->role_model);
+        return view('layouts.post',compact('role'));
     }
 }

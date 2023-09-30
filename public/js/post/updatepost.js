@@ -78,3 +78,4 @@ function filedemande(event) {
         file = event.target.files[i];
     }
 }
+myShow = w3.slideshow(".nature", 0);

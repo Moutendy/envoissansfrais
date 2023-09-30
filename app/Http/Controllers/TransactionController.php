@@ -94,7 +94,7 @@ class TransactionController extends Controller
          return view('layouts.addtransaction',compact('users','listContact'));
     }
 
-    public function showUserSend()
+    public function transactionclient()
     {
         //
 
@@ -111,12 +111,21 @@ class TransactionController extends Controller
 
         }
 
-        // if($role->name == 'agencier')
-        // {
-        //    $this->showTransactions = $this->transactionService->showUserAgencier();
-        // }
+        $transactionSend = $this->showTransactions;
+        return view('layouts.transaction',compact('transactionSend','role'));
+    }
+
+    public function transactionreceiver()
+    {
+        $role = $this->roleService->showById(auth()->user()->role_model);
+
+        if($role->name == 'client')
+        {
+           $this->showTransactions = $this->transactionService->showUserReceiver();
+        }
         $transactionSend = $this->showTransactions;
         return view('layouts.transaction',compact('transactionSend'));
     }
+
 
 }

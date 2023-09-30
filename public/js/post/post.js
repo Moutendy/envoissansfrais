@@ -185,4 +185,4 @@ function transaction(userId) {
         // Redirigez vers la nouvelle URL
         window.location.href = redirectionlien
     })
-}
+} // Activez l'animation automatique

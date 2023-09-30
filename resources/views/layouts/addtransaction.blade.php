@@ -69,8 +69,12 @@
                         <div class="col-md-6 ps-md-2">
                             <div class="input-group input-group-static mb-4">
 
-                                <label>Nom de l'agencier : <b>{{ $users->name }}</b></label>
-                                <input name="user_agencier" type="text" value="{{ $users->id }}" class="form-control" disabled  id="agn">
+                                <label>Nom de l'agencier : <b></b></label>
+                                <select name="user_agencier" class="form-control">
+                                    <option value="{{ $users->id }}">
+                                        {{ $users->name }}
+                                    </option>
+                                </select>
                             </div>
                           </div>
                       <div class="col-md-6">
