@@ -17,9 +17,14 @@
                     <button type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</button>
                 </div>
             </div>
-<div class="card">
-
-
+     <div class="card">
+            @if($validationTransactions)
+            @foreach ($validationTransactions as $validationTransaction)
+            {{ $validationTransaction }}
+            @endforeach
+            @elseif(!$validationTransactions)
+            
+            @endif
     <div class="table-responsive">
       <table class="table align-items-center mb-0">
         <thead>

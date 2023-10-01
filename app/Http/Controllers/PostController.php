@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Services\{UserService,PostService,RoleService,TransactionService,ContactService,ValidationService};
 use Illuminate\Http\Request;
+use App\Models\{User};
 
 class PostController extends Controller
 {
@@ -122,9 +123,7 @@ class PostController extends Controller
         if($role->name == 'client')
         {
            $this->showTransactions = $this->transactionService->showUserSend();
-
         }
-
         $transactionSend = count($this->showTransactions);
         $post =  count($this->postBysUser);
         $val = count($this->pvalBysUser);
@@ -137,4 +136,15 @@ class PostController extends Controller
         $role = $this->roleService->showById(auth()->user()->role_model);
         return view('layouts.post',compact('role'));
     }
+
+    public function profilAgencier($id) {
+        $tval = count($this->validationService->validationTransByUserById($id));
+        $tran = count($this->transactionService->showUserAgencierById($id));
+        $fb = $this->postService->fiable($tran,$tval);
+        $contactBysUser = count($this->contactService->showOfAgencier($id));
+        $postBysUser = count($this->postService->postByAgencier($id));
+        $user = User::find($id);
+        return view('layouts.profilByAgencier',compact('user','tval','tran','fb','contactBysUser','postBysUser'));
+    }
 }
+

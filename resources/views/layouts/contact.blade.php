@@ -2,7 +2,7 @@
 
 @section('content')
 <header>
-    <div class="page-header min-height-400" style="background-image: url('../assets/img/city-profile.jpg');" loading="lazy">
+    <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
 </header>
@@ -13,22 +13,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 mx-auto">
-                        <div class="mt-n8 mt-md-n9 text-center">
-                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../assets/img/bruce-mars.jpg" alt="bruce" loading="lazy">
-                        </div>
+                        <a href="{{route('home')}}">
+                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="bruce" loading="lazy">
+                        </a>
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h3 class="mb-0">Transaction Receiver</h3>
+                            <h3 class="mb-0">Contact</h3>
                             <div class="d-block">
-                                <a href="addtransaction" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</a>
+                                <input type="text" id="contacte" class="btn btn-sm btn-outline-info text-nowrap mb-0" placeholder="Recherche Contact" />
                             </div>
                         </div>
-                        @if ($contacts)
-                        @foreach($contacts as $contact)
-                        <option value="{{ $contact->id }}">
-                         {{ $contact->name }}
-                        </option>
-                         @endforeach
-                        @endif
+
 
                         <div class="row py-5">
                             <div class="card">
@@ -37,51 +31,49 @@
                                   <thead>
                                     <tr>
                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Accepter</th>
-                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date debut de transaction</th>
-                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date fin de transaction</th>
-                                      <th class="text-secondary opacity-7"></th>
+                                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pays</th>
+                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ville</th>
+                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tel</th>
+                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-
+                                    @if ($contacts)
+                                    @foreach($contacts as $contact)
                                       <tr>
-                                          <td>
+
+
+
+                                         <td>
                                             <div class="d-flex px-2 py-1">
                                               <div>
-                                                <img src="" class="avatar avatar-sm me-3">
+                                                <img src="{{ $contact->image_profil }}" class="avatar avatar-sm me-3">
                                               </div>
                                               <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-xs">ksflksfkf</h6>
-                                                <p class="text-xs text-secondary mb-0">hjshshhshs</p>
+                                                <h6 class="mb-0 text-xs"> {{ $contact->name }}</h6>
+                                                <p class="text-xs text-secondary mb-0"> {{ $contact->name }}</p>
                                               </div>
                                             </div>
                                           </td>
+
+
+
                                           <td>
-                                            <p class="text-xs font-weight-bold mb-0">hsgsyzhizjkz</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $contact->pays }}</p>
 
                                           </td>
                                           <td class="align-middle text-center text-sm">
-                                            ndsidjposdkjdf
+                                            {{ $contact->ville }}
                                           </td>
                                           <td class="align-middle text-center">
-                                            <span class=" badge bg-gradient-success">kjdjdjdjdjd</span>
+                                            <span class=" badge bg-gradient-success">{{ $contact->tel }}</span>
                                           </td>
                                           <td class="align-middle text-center">
-                                              <span class=" badge bg-gradient-danger">hsgsjshjshjs</span>
-                                            </td>
-
-                                          <td class="align-middle">
-
-                                              <a href="dqsfqsfqsfqfqsf" class="badge bg-gradient-success" data-toggle="tooltip" data-original-title="Edit user">
-                                                  Accepter la transaction
-                                                </a>
-
-
+                                              <span class=" badge bg-gradient-danger">{{ $contact->email }}</span>
                                           </td>
                                         </tr>
-
+                                        @endforeach
+                                        @endif
                                   </tbody>
                                 </table>
                               </div>

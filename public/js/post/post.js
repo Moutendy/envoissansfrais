@@ -4,6 +4,7 @@ var deletepost = document.createElement("li");
 var id_global;
 var icon_close = document.createElement("i");
 var card_update_Image;
+var imghead;
 
 var user;
 var class_iduser = document.getElementById("class_iduser").textContent;
@@ -69,10 +70,11 @@ function afficherDonnees() {
                 figure.classList.add("image");
                 figure.classList.add("is-48x48");
 
-                var imghead = document.createElement("img");
+                imghead = document.createElement("img");
                 imghead.classList.add("imageprofil");
                 imghead.src = donnees[i].user.image_profil;
                 transaction(donnees[i].user.id);
+                showProfil(donnees[i].user.id)
                 var icon_menu = document.createElement("i");
                 icon_menu.classList.add("material-icons");
                 icon_menu.classList.add("posi-icons");
@@ -185,4 +187,11 @@ function transaction(userId) {
         // Redirigez vers la nouvelle URL
         window.location.href = redirectionlien
     })
+} // Activez l'animation automatique
+
+function showProfil(userId) {
+    imghead.addEventListener('click', function(event) {
+        const redirectionlien = '/profilAgencier/' + userId;
+        window.location.href = redirectionlien
+    });
 } // Activez l'animation automatique

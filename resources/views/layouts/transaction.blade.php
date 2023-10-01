@@ -33,6 +33,7 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date debut de transaction</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date fin de transaction</th>
             <th class="text-secondary opacity-7"></th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">transaction de validé</th>
           </tr>
         </thead>
         <tbody>
@@ -87,6 +88,9 @@
 
                     @endif
                 </td>
+                <td class="align-middle text-center">
+                    <span class=" badge bg-gradient-danger">B</span>
+                </td>
               </tr>
             @endforeach
             @elseif(empty($transactionSend))
@@ -94,6 +98,7 @@
             @endif
         </tbody>
       </table>
+      
     </div>
   </div>
         </div>

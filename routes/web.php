@@ -27,13 +27,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', [PostController::class, 'home'])->middleware(['auth'])->name('home');
+Route::get('/', [PostController::class, 'home'])->middleware(['auth'])->name('home');
 
 
 require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function () {
     //profil
     Route::get('/profilUser', [PostController::class, 'profil'])->name('profil');
+    Route::get('/profilAgencier/{id}', [PostController::class, 'profilAgencier'])->name('profilAgencier');
 
     //post
     Route::post('/post/{id}', [PostController::class, 'update'])->name('update');
@@ -52,8 +53,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     //validation
-    Route::get('/validation',[ValidationController::class,'validation'] );
-
+    Route::get('/validation',[ValidationController::class,'validation'] )->name('validation');
+    Route::get('/validationByUser/{$idUser}',[ValidationController::class,'validationByUser'] )->name('validationByUser');
     Route::get('/validationclient', function () {
         return view('layouts.validationclient');
     });
@@ -64,7 +65,6 @@ Route::middleware(['auth'])->group(function () {
 
     //transaction
     Route::get('/transactionclient',[TransactionController::class, 'transactionclient'])->name('transactionclient');
-
     Route::get('/transactionreceiver',[TransactionController::class, 'transactionreceiver'])->name('transactionreceiver');
     Route::get('/transaction', [TransactionController::class, 'transactionclient'])->name('transaction');
     Route::get('/addtransaction/{userId}', [TransactionController::class, 'addtransaction'])->name('addtransaction');

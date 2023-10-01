@@ -27,7 +27,7 @@
                     @endif
 
                     @elseif(empty($role))
-                    
+
                     @endif
 
                     <a class="navbar-item" href="{{ route('profil') }}">
@@ -38,6 +38,9 @@
                     </a>
                     <a class="navbar-item" href="{{ route('transactionreceiver') }}">
                         Transaction Receiver
+                    </a>
+                    <a class="navbar-item">
+                            Validation
                     </a>
                     <hr class="navbar-divider">
 
@@ -56,9 +59,9 @@
         </div>
     </div>
 </nav>
-<div class="columns body-columns">
-    <div class="column is-half is-offset-one-quarter" id="card-container">
+<div class="columns body-columns conteneur">
 
+    <div class="column is-half is-offset-one-quarter" id="card-container">
     </div>
    </div>
 </div>

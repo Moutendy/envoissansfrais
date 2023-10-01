@@ -74,7 +74,12 @@ class ValidationController extends Controller
 
     public function validation()
     {
-       $validation = $this->validationService->showAgencier();
-    return view('layouts.validation',compact('validation'));
-    }
+
+    $validation = $this->validationService->showAgencier();
+    return view('layouts.validation',compact('validation'));}
+
+    public function validationByUser($idUser)
+    {
+    $validationTransactions = $this->validationService->nomValidationTransBy($idUser);
+    return $validationTransactions;}
 }

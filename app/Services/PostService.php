@@ -15,7 +15,7 @@ class PostService
 
 
     protected ImageService $imageService;
-
+    public $fb;
     public function __construct(ImageService $imageService)
     {
         $this->imageService = $imageService;
@@ -128,4 +128,15 @@ class PostService
         return DB::select('SELECT ps.id ,ps.image as image_post,ps.created_at ,ps.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join post_models as ps on ps.user = us.id where us.id = :id',['id'=>auth()->user()->id]);
     }
 
+    public function postByAgencier($id)
+    {
+        return DB::select('SELECT ps.id ,ps.image as image_post,ps.created_at ,ps.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join post_models as ps on ps.user = us.id where us.id = :id',['id'=>$id]);
+    }
+    public function fiable($tr,$v)
+    {
+        if($v>0)
+        return $tr/$v;
+        if($v==0)
+        return 0;
+    }
 }
