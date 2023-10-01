@@ -54,7 +54,11 @@ Route::middleware(['auth'])->group(function () {
 
     //validation
     Route::get('/validation',[ValidationController::class,'validation'] )->name('validation');
-    Route::get('/validationByUser/{$idUser}',[ValidationController::class,'validationByUser'] )->name('validationByUser');
+    Route::get('/validationByUser/{idUser}',[ValidationController::class,'validationByUser'] )->name('validationByUser');
+
+    Route::get('/noteTransaction/{nameUser}/{id}',[ValidationController::class,'noteTransaction'] );
+
+
     Route::get('/validationclient', function () {
         return view('layouts.validationclient');
     });

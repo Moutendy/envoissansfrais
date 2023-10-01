@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ValidationService;
+use App\Services\{ValidationService,RoleService};
 use Illuminate\Http\Request;
 
 class ValidationController extends Controller
 {
     private ValidationService $validationService;
-    public function __construct(ValidationService $validationService)
+    private RoleService $roleService;
+    public function __construct(RoleService $roleService,ValidationService $validationService)
     {
         $this->validationService = $validationService;
+        $this->roleService = $roleService;
     }
     /**
      * Display a listing of the resource.
@@ -81,5 +83,26 @@ class ValidationController extends Controller
     public function validationByUser($idUser)
     {
     $validationTransactions = $this->validationService->nomValidationTransBy($idUser);
-    return $validationTransactions;}
+    $role = $this->roleService->showById(auth()->user()->role_model);
+    return view('layouts.validation',compact('validationTransactions','role'));}
+
+    public function noteTransaction(Request $request,$nameUser,$id)
+    {
+        if($nameUser=='client')
+        {
+            $request['user_send']=1;
+            $this->validationService->update($request, $id);
+        }
+        else if($nameUser=='agencier')
+        {
+            $request['user_agencier']=1;
+            $this->validationService->update($request, $id);
+        }
+    }
+
+    public function noteTransactionreceiver(Request $request,$id)
+    {
+            $request['user_receiver']=1;
+            $this->validationService->update($request, $id);
+    }
 }

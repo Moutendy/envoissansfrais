@@ -53,8 +53,6 @@ class ValidationService
             return Response('success Update validation',200);
         }
 
-
-
         return response(['validation'=>'not Update validation.'],401);
     }
 
@@ -90,6 +88,6 @@ class ValidationService
 
     public function nomValidationTransBy($idbyUser)
     {   $id = 0;
-        return DB::select('SELECT user_send FROM `validation_models` WHERE user_send=:user_send and user_receiver=:user_receiver and user_agencier=:user_agencier and transaction_model =:id',['id'=>$idbyUser,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
+        return DB::select('SELECT * FROM `validation_models` WHERE user_send=:user_send and user_receiver=:user_receiver and user_agencier=:user_agencier and transaction_model =:id',['id'=>$idbyUser,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
 
     }

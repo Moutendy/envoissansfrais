@@ -12,71 +12,61 @@
     <section class="py-sm-7 py-5 position-relative">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h3 class="mb-0">Validation Agencier</h3>
+                <h3 class="mb-0">Note de Transaction(ok/bad)</h3>
                 <div class="d-block">
-                    <button type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</button>
+                    <a href="{{route('home')}}" class="btn btn-sm btn-outline-info text-nowrap mb-0">Home</a>
                 </div>
             </div>
      <div class="card">
-            @if($validationTransactions)
-            @foreach ($validationTransactions as $validationTransaction)
-            {{ $validationTransaction }}
-            @endforeach
-            @elseif(!$validationTransactions)
-            
-            @endif
     <div class="table-responsive">
       <table class="table align-items-center mb-0">
         <thead>
           <tr>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description De la transaction</th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date de Debut</th>
-            <th class="text-secondary opacity-7"></th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">user_send</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">user_agencier</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Nom de l'agent</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Valider</th>
           </tr>
         </thead>
         <tbody>
-
-            @if (!@empty($validation))
-           @foreach ($validation  as $val)
-
-           @endforeach
+        @if (!@empty($validationTransactions))
+           @foreach ($validationTransactions  as $validationTransaction)
             <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="{{ $val->image_profil}}" class="avatar avatar-sm me-3">
-                    </div>
+
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-xs">{{ $val->name}}</h6>
-                      <p class="text-xs text-secondary mb-0">{{ $val->email}}</p>
+                        @if ($validationTransaction->user_send == 0)
+                        <span class=" badge bg-gradient-danger">Bad</span>
+                        @elseif($validationTransaction->user_send>0)
+                        <span class=" badge bg-gradient-success">Ok</span>
+                        @endif
                     </div>
                   </div>
                 </td>
-                <td>
-
-                  <p class="text-xs text-secondary mb-0">{{ $val->rolename }}</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="">{{ $val->accept_transaction }}</span>
-                </td>
-                <td class="align-middle text-center text-sm">
-                    <span class="">{{ $val->desc }}</span>
-                  </td>
+                {{-- <td>
+                  <p class="text-xs text-secondary mb-0">{{ $validationTransaction->user_receiver }}</p>
+                </td> --}}
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-normal">{{ $val->startdate }}</span>
+                    @if ($validationTransaction->user_agencier == 0)
+                    <span class=" badge bg-gradient-danger">Bad</span>
+                    @elseif($validationTransaction->user_agencier>0)
+                    <span class=" badge bg-gradient-success">Ok</span>
+                    @endif
+
                 </td>
-                <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Accepter
-                  </a>
+                <td class="align-middle text-center">
+                    <span class="badge bg-gradient-success"></span>
+                </td>
+                <td class="align-middle text-center">
+                    @if ($role)
+                    <a href="/noteTransaction/{{ $role->name }}/{{ $validationTransaction->id }}" class="badge bg-gradient-success"> Notez la transaction</a>
+                    @endif
                 </td>
               </tr>
-            @endif
-
-
+              @endforeach
+              @elseif($validationTransactions)
+              @endif
         </tbody>
       </table>
     </div>

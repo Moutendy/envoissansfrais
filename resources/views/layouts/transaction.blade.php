@@ -33,7 +33,7 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date debut de transaction</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date fin de transaction</th>
             <th class="text-secondary opacity-7"></th>
-            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">transaction de validé</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">terminer la transaction</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +89,10 @@
                     @endif
                 </td>
                 <td class="align-middle text-center">
-                    <span class=" badge bg-gradient-danger">B</span>
+                    @if($sendTransactions->accept_transaction == 1)
+                    <a href="{{route('validationByUser',$sendTransactions->id)}}" class=" badge bg-gradient-success">
+                    Action</a>
+                    @endif
                 </td>
               </tr>
             @endforeach
@@ -98,7 +101,7 @@
             @endif
         </tbody>
       </table>
-      
+
     </div>
   </div>
         </div>
