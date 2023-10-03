@@ -60,9 +60,9 @@
                                                 <span class=" badge bg-gradient-danger">{{ $contactBysUser }}</span>
                                               </td>
                                             <td class="align-middle text-center">
-                                                  <span class=" badge bg-gradient-danger">{{ $fb }}</span>
+                                                  <span class=" badge bg-gradient-danger">{{ $fb }} %</span>
                                             </td>
-                            
+
                                           </tr>
 
                                     </tbody>

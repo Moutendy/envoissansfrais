@@ -135,7 +135,7 @@ class PostService
     public function fiable($tr,$v)
     {
         if($v>0)
-        return $tr/$v;
+        return ($tr/$v)*100;
         if($v==0)
         return 0;
     }

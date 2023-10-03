@@ -13,7 +13,10 @@ class validationModel extends Model
         'user_receiver',
         'user_agencier',
         'desc',
-        'transaction_model'
+        'transaction_model',
+        'agencier_tel',
+        'agencier_name',
+        'user_send_name'
     ];
 
     public function user()

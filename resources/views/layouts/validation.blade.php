@@ -25,6 +25,8 @@
             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">user_send</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">user_agencier</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Nom de l'agent</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Tel de l'agent</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Nom du client</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Valider</th>
           </tr>
         </thead>
@@ -44,9 +46,7 @@
                     </div>
                   </div>
                 </td>
-                {{-- <td>
-                  <p class="text-xs text-secondary mb-0">{{ $validationTransaction->user_receiver }}</p>
-                </td> --}}
+
                 <td class="align-middle text-center">
                     @if ($validationTransaction->user_agencier == 0)
                     <span class=" badge bg-gradient-danger">Bad</span>
@@ -54,6 +54,15 @@
                     <span class=" badge bg-gradient-success">Ok</span>
                     @endif
 
+                </td>
+                   <td>
+                  <p class="text-xs text-secondary mb-0">{{ $validationTransaction->agencier_name }}</p>
+                </td>
+                <td>
+                    <p class="text-xs text-secondary mb-0">{{ $validationTransaction->agencier_tel }}</p>
+                </td>
+                <td>
+                    <p class="text-xs text-secondary mb-0">{{ $validationTransaction->user_send_name }}</p>
                 </td>
                 <td class="align-middle text-center">
                     <span class="badge bg-gradient-success"></span>

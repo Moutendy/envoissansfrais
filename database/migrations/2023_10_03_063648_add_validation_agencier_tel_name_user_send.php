@@ -17,7 +17,7 @@ class AddValidationAgencierTelNameUserSend extends Migration
         Schema::table('validation_models', function (Blueprint $table) {
             $table->string('agencier_tel');
             $table->string('agencier_name'); // Vous pouvez également utiliser d'autres types de colonnes comme integer, boolean, etc.
-            $table->string('user_send_name');
+            $table->string('user_send_name'); 
         });
     }
 

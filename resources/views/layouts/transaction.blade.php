@@ -33,12 +33,13 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date debut de transaction</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date fin de transaction</th>
             <th class="text-secondary opacity-7"></th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tel de l'agencier</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de l'agencier</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">terminer la transaction</th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
             @if (!@empty($transactionSend))
-
             @foreach ($transactionSend as $sendTransactions )
             <tr>
                 <td>
@@ -69,8 +70,7 @@
                 </td>
                 <td class="align-middle text-center">
                     <span class=" badge bg-gradient-danger">{{ $sendTransactions->end }}</span>
-                  </td>
-
+                </td>
                 <td class="align-middle">
                     @if (!empty($role))
                     @if ($role->name == 'agencier')
@@ -85,9 +85,11 @@
                     @endif
                     @endif
                     @elseif (empty($role))
-
                     @endif
                 </td>
+
+                <td>{{ $sendTransactions->agencier_tel }}</td>
+                <td>{{ $sendTransactions->agencier_name }}</td>
                 <td class="align-middle text-center">
                     @if($sendTransactions->accept_transaction == 1)
                     <a href="{{route('validationByUser',$sendTransactions->id)}}" class=" badge bg-gradient-success">
@@ -101,11 +103,9 @@
             @endif
         </tbody>
       </table>
-
     </div>
   </div>
         </div>
-
     </section>
 </div>
 @endsection
