@@ -88,6 +88,6 @@ class ValidationService
 
     public function nomValidationTransBy($idbyUser)
     {   $id = 0;
-        return DB::select('SELECT * FROM `validation_models` WHERE user_send=:user_send and user_receiver=:user_receiver and user_agencier=:user_agencier and transaction_model =:id',['id'=>$idbyUser,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
+        return DB::select('SELECT * FROM `validation_models` WHERE transaction_model =:id',['id'=>$idbyUser]);}
 
     }

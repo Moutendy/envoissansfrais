@@ -98,6 +98,7 @@ class ValidationController extends Controller
             $request['user_agencier']=1;
             $this->validationService->update($request, $id);
         }
+        return back();
     }
 
     public function noteTransactionreceiver(Request $request,$id)
