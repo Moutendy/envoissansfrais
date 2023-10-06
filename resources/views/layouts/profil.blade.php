@@ -9,7 +9,7 @@
     <!-- -------- END HEADER 4 w/ search book a ticket form ------- -->
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
         <!-- START Testimonials w/ user image & text & info -->
-        <section class="py-sm-7 py-5 position-relative">
+        <section class=" position-relative" class="section" id="men">
             <div class="container">
                 <div class="row">
                     <div class="col-12 mx-auto">
@@ -54,52 +54,54 @@
                                     </div>
 
                                 </div>
-                                {{-- <p class="text-lg mb-0">
-                                     <div class="col-auto">
-                                        <span class="h6">Description</span>
-                                    </div>If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality). Choose the path that leaves you more equanimous. <br>
-                                    <a
-                                        href="javascript:;" class="text-info icon-move-right">Faire un transfert
-                                        <i class="fas fa-arrow-right text-sm ms-1"></i>
-                                        </a>
-                                </p> --}}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-auto">
+                <div class="container" id=card>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="men-item-carousel">
+                                <div class="owl-men-item owl-carousel">
+                                    @if (!empty($contactNewBysUser))
+                                    @foreach ($contactNewBysUser as $contactNewBysUsers)
 
-                <span>Contact(s)</span>
-            </div>
-            <div class="page-header min-vh-100" loading="lazy">
+                                    <div class="item">
+                                        <div class="thumb">
+                                            <div class="hover-content">
+                                                <ul>
+                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <a href="{{ route('addcontact',$contactNewBysUsers->id) }}">
+                                            <img src="{{ $contactNewBysUsers->image_profil }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="down-content">
+                                            <h4>Classic Spring</h4>
+                                            <span>$120.00</span>
+                                            <ul class="stars">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
 
-                @if (!empty($contactNewBysUser))
-
-                @foreach ($contactNewBysUser as $contactNewBysUsers)
-               <a href="{{ route('addcontact',$contactNewBysUsers->id) }}">
-
-                <div class="card mt-4 nature">
-                    <!-- Card image -->
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                      <img class="border-radius-lg w-100 img" src="{{ $contactNewBysUsers->image_profil }}" alt="Image placeholder">
-                      <!-- List group -->
-
-                     </div>
-                    <!-- Card body -->
-                    <div class="card-body">
-
+                                    @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-            </a>
-                @endforeach
-                  @endif
-            </div>
+                </div>
         </section>
-        <!-- END Testimonials w/ user image & text & info -->
-        <!-- START Blogs w/ 4 cards w/ image & text & link -->
-
-        <!-- END Blogs w/ 4 cards w/ image & text & link -->
     </div>
 
 @endsection
