@@ -7,7 +7,7 @@
 </header>
 
     <!-- -------- END HEADER 4 w/ search book a ticket form ------- -->
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4" id="card">
         <!-- START Testimonials w/ user image & text & info -->
         <section class=" position-relative" class="section" id="men">
             <div class="container">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-                <div class="container" id=card>
+                <div class="container" >
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="men-item-carousel">

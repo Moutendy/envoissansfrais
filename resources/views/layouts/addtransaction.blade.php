@@ -17,8 +17,11 @@
               </div>
               <div class="card-body">
                 <p class="pb-3">
-
+                    <div class="col-md-6">
+                        <a href="{{route('home')}}" class="btn bg-gradient-success mt-3 mb-0">Home</a>
+                      </div>
                 </p>
+                <br/>
                 <form id="contact-form" method="post" action="{{route('storeTransaction')}}">
                     {{ csrf_field() }}
                   <div class="card-body p-0 my-3">
@@ -80,6 +83,7 @@
                       <div class="col-md-6">
                         <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Ajouter !</button>
                       </div>
+
                     </div>
                   </div>
                 </form>

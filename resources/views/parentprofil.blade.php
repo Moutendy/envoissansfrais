@@ -14,8 +14,6 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-
-
   <!-- Additional CSS Files -->
   <link rel="stylesheet" type="text/css" href="../asset/css/bootstrap.min.css">
 
@@ -36,11 +34,10 @@
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <script src="https://www.w3schools.com/lib/w3.js"></script>
-
   <style>
-    .img{
-        width: 626px;
-        height: 1126px;
+    #card{
+        position: relative;
+        top: 300px;
     }
     </style>
 </head>

@@ -74,7 +74,7 @@ function afficherDonnees() {
                 imghead.classList.add("imageprofil");
                 imghead.src = donnees[i].user.image_profil;
                 transaction(donnees[i].user.id);
-                showProfil(donnees[i].user.id)
+                showProfil(donnees[i].user.id);
                 var icon_menu = document.createElement("i");
                 icon_menu.classList.add("material-icons");
                 icon_menu.classList.add("posi-icons");

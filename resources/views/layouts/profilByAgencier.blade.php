@@ -7,7 +7,7 @@
     </div>
 </header>
    <!-- -------- END HEADER 4 w/ search book a ticket form ------- -->
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4" id="card">
         <!-- START Testimonials w/ user image & text & info -->
         <section class="py-sm-7 py-5 position-relative">
             <div class="container">

@@ -7,7 +7,7 @@
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
 </header>
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4" id="card">
     <!-- START Testimonials w/ user image & text & info -->
     <section class="py-sm-7 py-5 position-relative">
         <div class="container">
@@ -22,7 +22,7 @@
                     <a href="addtransaction" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</a>
                 </div>
             </div>
-<div class="card">
+<div class="card" >
     <div class="table-responsive">
       <table class="table align-items-center mb-0">
         <thead>
@@ -33,8 +33,12 @@
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date debut de transaction</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date fin de transaction</th>
             <th class="text-secondary opacity-7"></th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tel de l'envoyeur</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de l'envoyeur</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tel de l'agencier</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de l'agencier</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom du receveur</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tel du receveur</th>
             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">terminer la transaction</th>
         </tr>
         </thead>
@@ -87,9 +91,12 @@
                     @elseif (empty($role))
                     @endif
                 </td>
-
+                <td>{{ $sendTransactions->tel_user_send }}</td>
+                <td>{{ $sendTransactions->nom_user_send }}</td>
                 <td>{{ $sendTransactions->agencier_tel }}</td>
                 <td>{{ $sendTransactions->agencier_name }}</td>
+                <td>{{ $sendTransactions->nom_receiver }}</td>
+                <td>{{ $sendTransactions->tel_receiver }}</td>
                 <td class="align-middle text-center">
                     @if($sendTransactions->accept_transaction == 1)
                     <a href="{{route('validationByUser',$sendTransactions->id)}}" class=" badge bg-gradient-success">
