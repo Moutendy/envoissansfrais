@@ -99,20 +99,19 @@ class TransactionController extends Controller
         //
 
       $role = $this->roleService->showById(auth()->user()->role_model);
-
-
         if($role->name == 'agencier')
         {
            $this->showTransactions = $this->transactionService->showUserAgencier();
+           $transactionSend = $this->showTransactions;
+           return view('layouts.transaction',compact('transactionSend','role'));
         }
-        if($role->name == 'client')
-        {
+
            $this->showTransactions = $this->transactionService->showUserSend();
-
-        }
-
-        $transactionSend = $this->showTransactions;
+           $transactionSend = $this->showTransactions;
         return view('layouts.transaction',compact('transactionSend','role'));
+        
+
+
     }
 
     public function transactionreceiver()

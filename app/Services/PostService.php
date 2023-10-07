@@ -25,7 +25,7 @@ class PostService
     {
       //  return DB::select('SELECT * FROM `post_models` WHERE `user`=:user', ['ville'=>$user]);
 
-        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil')->get();
+        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil,tel')->get();
         return response($post, 201);
     }
 
@@ -135,7 +135,7 @@ class PostService
     public function fiable($tr,$v)
     {
         if($v>0)
-        return ($tr/$v)*100;
+        return ($v/$tr)*100;
         if($v==0)
         return 0;
     }

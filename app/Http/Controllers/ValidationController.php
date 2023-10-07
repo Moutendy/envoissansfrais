@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\{ValidationService,RoleService};
 use Illuminate\Http\Request;
-
+use App\Models\{validationModel,transactionModel};
 class ValidationController extends Controller
 {
     private ValidationService $validationService;
@@ -88,16 +88,25 @@ class ValidationController extends Controller
 
     public function noteTransaction(Request $request,$nameUser,$id)
     {
-        if($nameUser=='client')
+        $validationModel = validationModel::find($id);
+       $trans = transactionModel::find($validationModel->transaction_model);
+        if($nameUser =='client')
         {
             $request['user_send']=1;
             $this->validationService->update($request, $id);
         }
-        else if($nameUser=='agencier')
+        else if($nameUser =='agencier')
         {
             $request['user_agencier']=1;
             $this->validationService->update($request, $id);
         }
+
+        if($trans->user_receiver == auth()->user()->id)
+        {
+            $request['user_receiver']=1;
+            $this->validationService->update($request, $id);
+        }
+
         return back();
     }
 

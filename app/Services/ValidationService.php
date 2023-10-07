@@ -18,7 +18,11 @@ class ValidationService
         {
             $validation = validationModel::create([
                 'desc' => $request['desc'],
-                'transaction_model' => $request['id']
+                'transaction_model' => $request['id'],
+                'agencier_tel' => $request['agencier_tel'],
+                'nom_receiver' => $request['nom_receiver'],
+                'agencier_name' => $request['agencier_name'],
+                'user_send_name'=> auth()->user()->name,
             ]);
             return response(['message'=>'Save validation.', $validation],200);
         }
@@ -80,11 +84,11 @@ class ValidationService
 
     public function validationTransByUser()
     {   $id = 0;
-        return DB::select('SELECT ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , rl.name as rolename, us.email,us.image_profil,us.name,us.id,us.tel,vt.desc FROM `users` as us join validation_models as vt on vt.user_agencier = us.id join role_models as rl on rl.id = us.role_model join transaction_models as ts on ts.id = vt.transaction_model where us.id = :id and vt.user_agencier != :user_agencier and vt.user_receiver != :user_receiver and vt.user_send != :user_send',['id'=>auth()->user()->id,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
+        return DB::select('SELECT * FROM validation_models as vt WHERE vt.agencier_tel = :tel and vt.user_agencier != :user_agencier and vt.user_receiver != :user_receiver and vt.user_send != :user_send',['tel'=>auth()->user()->tel,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
 
-    public function validationTransByUserById($idbyUser)
-    {   $id = 0;
-            return DB::select('SELECT ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , rl.name as rolename, us.email,us.image_profil,us.name,us.id,us.tel,vt.desc FROM `users` as us join validation_models as vt on vt.user_agencier = us.id join role_models as rl on rl.id = us.role_model join transaction_models as ts on ts.id = vt.transaction_model where us.id = :id and vt.user_agencier != :user_agencier and vt.user_receiver != :user_receiver and vt.user_send != :user_send',['id'=>$idbyUser,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
+    public function validationTransByUserById($tel)
+    {        $id = 0;
+        return DB::select('SELECT * FROM validation_models as vt WHERE vt.agencier_tel = :tel and vt.user_agencier != :user_agencier and vt.user_receiver != :user_receiver and vt.user_send != :user_send',['tel'=>$tel,'user_send'=>$id,'user_receiver'=>$id,'user_agencier'=>$id]);}
 
     public function nomValidationTransBy($idbyUser)
     {   $id = 0;

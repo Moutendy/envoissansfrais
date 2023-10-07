@@ -138,12 +138,13 @@ class PostController extends Controller
     }
 
     public function profilAgencier($id) {
-        $tval = count($this->validationService->validationTransByUserById($id));
+        $user = User::find($id);
+        $tval = count($this->validationService->validationTransByUserById($user->tel));
         $tran = count($this->transactionService->showUserAgencierById($id));
         $fb = $this->postService->fiable($tran,$tval);
         $contactBysUser = count($this->contactService->showOfAgencier($id));
         $postBysUser = count($this->postService->postByAgencier($id));
-        $user = User::find($id);
+
         return view('layouts.profilByAgencier',compact('user','tval','tran','fb','contactBysUser','postBysUser'));
     }
 }
