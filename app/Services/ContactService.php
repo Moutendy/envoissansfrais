@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-use App\Models\{ContactModel};
+use App\Models\{ContactModel,User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 /**
@@ -42,6 +42,11 @@ class ContactService
         }
         return response(['contact'=>'contact not found.'],401);
     }
+    public function showUser()
+    {
 
+        return User::orderBy('created_at', 'desc')->get();
+
+    }
 
 }

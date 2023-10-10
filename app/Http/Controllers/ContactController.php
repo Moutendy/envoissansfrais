@@ -50,4 +50,10 @@ class ContactController extends Controller
         $contacts = $this->contactService->show();
         return view('layouts.contact',compact('contacts'));
     }
+
+    public function userOfApplication()
+    {
+        $contacts = $this->contactService->showUser();
+        return view('viewcontact',compact('contacts'));
+    }
 }

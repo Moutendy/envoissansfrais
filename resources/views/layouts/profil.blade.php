@@ -1,8 +1,13 @@
 @extends('parentprofil')
 @section('content')
 <header>
+    @if (@empty(Auth::user()->image_desc))
+    <div class="page-header min-height-400" style="background-image: url('../asset/images/men-03.jpg');" loading="lazy">
+    @elseif (!@empty(Auth::user()->image_desc))
     <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
+        @endif
         <span class="mask bg-gradient-dark opacity-8"></span>
+
     </div>
 </header>
 
@@ -15,8 +20,13 @@
                     <div class="col-12 mx-auto">
                         <div class="mt-n8 mt-md-n9 text-center">
                             <a href="{{route('home')}}">
-                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="bruce" loading="lazy">
-                            </a>
+                                @if (@empty(Auth::user()->image_profil))
+
+                                <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../asset/images/men-01.jpg" alt="image" loading="lazy">
+                                @elseif (!@empty(Auth::user()->image_profil))
+                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="image" loading="lazy">
+                                @endif
+                        </a>
                         </div>
                         <div class="row py-5">
                             <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
@@ -60,47 +70,7 @@
                     </div>
                 </div>
             </div>
-                <div class="container" >
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="men-item-carousel">
-                                <div class="owl-men-item owl-carousel">
-                                    @if (!empty($contactNewBysUser))
-                                    @foreach ($contactNewBysUser as $contactNewBysUsers)
 
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <a href="{{ route('addcontact',$contactNewBysUsers->id) }}">
-                                            <img src="{{ $contactNewBysUsers->image_profil }}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Classic Spring</h4>
-                                            <span>$120.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    @endforeach
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
         </section>
     </div>
 

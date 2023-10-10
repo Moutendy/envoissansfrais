@@ -29,6 +29,9 @@
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
+                @error('email')
+                {{ $errors->first('email') }}
+                 @enderror
             </div>
 
             <!-- Password -->
@@ -39,6 +42,9 @@
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
+                                @error('password')
+                                {{ $errors->first('password') }}
+                                 @enderror
             </div>
 
             <!-- Remember Me -->
@@ -61,6 +67,11 @@
                 </x-button>
             </div>
         </form>
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                {{ __('Already registered?') }}
+            </a>
+        </div>
         </div>
 
 </x-guest-layout>

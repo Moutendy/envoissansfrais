@@ -15,32 +15,56 @@
             <div class="card-body">
               <form role="form" class="text-start" method="POST" action="{{ route('register') }}">
                 <div class="input-group input-group-outline my-3">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" :value="old('name')" placeholder="Nom">
+                @error('name')
 
-                    <input type="text" class="form-control" name="name" :value="old('name')" placeholder="Nom">
+                    {{ $errors->first('name') }}
+
+                @enderror
                 </div>
                 <div class="input-group input-group-outline my-3">
 
                   <input type="email" class="form-control" name="email" :value="old('email')" placeholder="Email">
+                  @error('email')
+
+                    {{ $errors->first('email') }}
+
+                   @enderror
                 </div>
                 <div class="input-group input-group-outline mb-3">
 
                   <input type="password" class="form-control" name="password" :value="old('password')" placeholder="Mot de Passe">
+                  @error('password')
+                    {{ $errors->first('password') }}
+                   @enderror
                 </div>
                 <div class="input-group input-group-outline mb-3">
 
                     <input type="password" class="form-control" name="password_confirmation" :value="old('password_confirmation')" placeholder="Confirmation Mot de Passe" >
-                  </div>
+                    @error('password_confirmation')
+                        {{ $errors->first('password_confirmation') }}
+                     @enderror
+                </div>
                 <div class="input-group input-group-outline my-3">
 
                     <input type="number" class="form-control" name="tel" :value="old('tel')" placeholder="Tel" required>
-                  </div>
+                    @error('tel')
+                     {{ $errors->first('tel') }}
+                     @enderror
+                </div>
                   <div class="input-group input-group-outline my-3">
 
                     <input type="text" class="form-control" name="pays" :value="old('pays')" placeholder="Pays">
-                  </div>
+                    @error('pays')
+                        {{ $errors->first('pays') }}
+                     @enderror
+                </div>
                   <div class="input-group input-group-outline my-3">
                     <input type="text" class="form-control" name="ville" :value="old('ville')" placeholder="Ville">
-                  </div>
+                    @error('ville')
+                        {{ $errors->first('ville') }}
+                     @enderror
+                </div>
                   <div class="input-group input-group-static mb-4">
                     <label>Role(client ou agencier)</label>
                     <select name="role_model"  class="form-control" required>
@@ -50,6 +74,9 @@
                      </option>
                       @endforeach
                   </select>
+                  @error('role_model')
+                  {{ $errors->first('role_model') }}
+                   @enderror
                   </div>
                 <div class="form-check form-switch d-flex align-items-center mb-3">
                   <input class="form-check-input" type="checkbox" id="rememberMe" checked>
@@ -62,7 +89,7 @@
 
                   <div class="flex items-center justify-end mt-4">
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                        {{ __('Already registered?') }}
+                        {{ __('J ai pas de compte') }}
                     </a>
                 </div>
                 </p>

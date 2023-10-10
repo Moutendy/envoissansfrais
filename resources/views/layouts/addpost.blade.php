@@ -27,12 +27,18 @@
                         <div class="input-group input-group-static mb-4">
                           <label>Description</label>
                           <input type="text" name="desc" class="form-control">
+                          @if ($errors->has('desc'))
+                             <span class="text-danger">{{ $errors->first('desc') }}</span>
+                          @endif
                         </div>
                       </div>
                       <div class="col-md-6 ps-md-2">
                         <div class="input-group input-group-static mb-4">
                           <label>Image</label>
                           <input type="file" name="image" class="form-control">
+                          @if ($errors->has('image'))
+                             <span class="text-danger">{{ $errors->first('image') }}</span>
+                          @endif
                         </div>
                       </div>
                     </div>

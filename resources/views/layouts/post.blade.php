@@ -39,8 +39,8 @@
                     <a class="navbar-item" href="{{ route('transactionreceiver') }}">
                         Transaction Receiver
                     </a>
-                    <a class="navbar-item">
-                            Validation
+                    <a class="navbar-item" href="{{ route('userOfApplication') }}">
+                            Utilisateurs
                     </a>
                     <hr class="navbar-divider">
 
