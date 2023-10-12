@@ -18,7 +18,8 @@ class RoleService
     }
     public function show()
     {
-        return DB::table('role_models')->orderBy('id')->cursorPaginate(15);
+
+        return DB::select('SELECT * FROM `role_models` WHERE id not in(3,1)');
     }
     public function showById($id)
     {

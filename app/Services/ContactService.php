@@ -24,7 +24,7 @@ class ContactService
 
     public function show()
     {
-        return DB::select('SELECT email,image_profil,name,us.id,us.tel,us.pays,us.ville FROM `users` as us join contact_models as ct on ct.contact = us.id where ct.user =:id order by name',['id'=>auth()->user()->id]);
+        return DB::select('SELECT email,image_profil,name,us.id,us.tel,us.pays,us.ville,ct.id as contact FROM `users` as us join contact_models as ct on ct.contact = us.id where ct.user =:id order by name',['id'=>auth()->user()->id]);
     }
 
     public function showOfAgencier($id)
@@ -44,9 +44,7 @@ class ContactService
     }
     public function showUser()
     {
-
-        return User::orderBy('created_at', 'desc')->get();
-
+     return DB::select('SELECT * FROM `users` WHERE id NOT IN (SELECT us.id FROM `users` as us join contact_models as ct on ct.contact = us.id where ct.user =:id order by name)' ,['id'=>auth()->user()->id]);
     }
 
 }

@@ -43,6 +43,13 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'desc' => 'required',
+            'user_receiver' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'user_agencier' => 'required',
+        ]);
         $request['user_send'] = auth()->user()->id;
         $request['accept_transaction'] = 0;
         return $this->transactionService->store($request);
@@ -109,7 +116,7 @@ class TransactionController extends Controller
            $this->showTransactions = $this->transactionService->showUserSend();
            $transactionSend = $this->showTransactions;
         return view('layouts.transaction',compact('transactionSend','role'));
-        
+
 
 
     }

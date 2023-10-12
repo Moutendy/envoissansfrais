@@ -25,7 +25,7 @@ class PostService
     {
       //  return DB::select('SELECT * FROM `post_models` WHERE `user`=:user', ['ville'=>$user]);
 
-        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil,tel')->get();
+        $post = PostModel::orderBy('created_at', 'desc')->with('user:id,name,image_profil,tel,role_model')->get();
         return response($post, 201);
     }
 

@@ -43,7 +43,7 @@ class RoleController extends Controller
     public function show($id)
     {
         //
-        return $this->roleService->show($id);
+        return $this->roleService->showById($id);
     }
 
     /**
