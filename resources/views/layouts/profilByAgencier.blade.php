@@ -14,7 +14,12 @@
                 <div class="row">
                     <div class="col-12 mx-auto">
                         <a href="{{route('home')}}">
-                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ $user->image_profil}}" alt="bruce" loading="lazy">
+                            @if (@empty($user->image_profil))
+                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../asset/images/men-03.jpg" alt="image" loading="lazy">
+                           @else
+                           <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ $user->image_profil}}" alt="image" loading="lazy">
+                            @endif
+
                         </a>
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h4 class="mb-0"> Nom d'Agent : {{ $user->name}}</h4>
@@ -31,7 +36,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Statut</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contacts</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fiabilité(s)</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Transaction Validation(s)</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nouvelle Transaction</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -39,7 +44,11 @@
                                             <td>
                                               <div class="d-flex px-2 py-1">
                                                 <div>
-                                                  <img src="{{ $user->image_profil}}" class="avatar avatar-sm me-3">
+                                                    @if (@empty($user->image_profil))
+                                                    <img src="../asset/images/men-03.jpg" class="avatar avatar-sm me-3">
+                                                   @else
+                                                   <img src="{{ $user->image_profil}}" class="avatar avatar-sm me-3">
+                                                    @endif
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                   <h6 class="mb-0 text-xs">Nombre de Post</h6>
@@ -62,7 +71,9 @@
                                             <td class="align-middle text-center">
                                                   <span class=" badge bg-gradient-danger">{{ $fb }} %</span>
                                             </td>
-
+                                            <td class="align-middle text-center">
+                                            <a href="{{ route('addtransaction',$user->id) }}" class=" badge bg-gradient-danger">faire une transaction</a>
+                                            </td>
                                           </tr>
 
                                     </tbody>

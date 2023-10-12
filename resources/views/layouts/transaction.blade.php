@@ -3,9 +3,15 @@
 @section('content')
 
 <header>
+    @if (@empty(Auth::user()->image_profil))
+    <div class="page-header min-height-400" style="background-image: url('../asset/images/team-member-01.jpg');" loading="lazy">
+        <span class="mask bg-gradient-dark opacity-8"></span>
+    </div>    @else
     <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
+    @endif
+
 </header>
 <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4" id="card">
     <!-- START Testimonials w/ user image & text & info -->
@@ -13,7 +19,12 @@
         <div class="container">
             <div class="mt-n8 mt-md-n9 text-center">
                 <a href="{{route('home')}}">
-                <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="bruce" loading="lazy">
+                    @if (@empty(Auth::user()->image_profil))
+                    <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../asset/images/men-03.jpg" alt="bruce" loading="lazy">
+                    @else
+                    <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="bruce" loading="lazy">
+                    @endif
+
                 </a>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -49,7 +60,11 @@
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div>
-                      <img src="{{ $sendTransactions->image_profil }}" class="avatar avatar-sm me-3">
+                        @if (@empty($sendTransactions->image_profil))
+                        <img src="../asset/images/men-03.jpg" class="avatar avatar-sm me-3">
+                        @else
+                        <img src="{{ $sendTransactions->image_profil }}" class="avatar avatar-sm me-3">
+                        @endif
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-xs">{{ $sendTransactions->name }}</h6>

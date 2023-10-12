@@ -81,3 +81,21 @@ function filedemande(event) {
         file = event.target.files[i];
     }
 }
+
+
+function sup(id) {
+    console.log(id);
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        console.log(xhr.readyState);
+        console.log(xhr.status);
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+
+        }
+    };
+    xhr.open('get', '/deletecontact/' + id, true);
+    xhr.send();
+    location.reload();
+}

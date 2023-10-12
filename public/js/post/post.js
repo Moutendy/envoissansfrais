@@ -5,13 +5,17 @@ var id_global;
 var icon_close = document.createElement("i");
 var card_update_Image;
 var imghead;
-
+var roles;
 var user;
 var class_iduser = document.getElementById("class_iduser").textContent;
 document.getElementById("class_iduser").style.display = "none";
 window.onload = function() {
+    afficherRoles();
     afficherDonnees();
+
 };
+
+
 
 function afficherDonnees() {
     var xhr = new XMLHttpRequest();
@@ -36,7 +40,7 @@ function afficherDonnees() {
             ul.appendChild(updatepost);
             ul.appendChild(deletepost);
             cardContainer.appendChild(menuicon);
-
+            console.log(roles[0].id)
             for (; i < donnees.length; i++) {
 
 
@@ -72,8 +76,15 @@ function afficherDonnees() {
 
                 imghead = document.createElement("img");
                 imghead.classList.add("imageprofil");
-                imghead.src = donnees[i].user.image_profil;
-                transaction(donnees[i].user.id);
+                if (donnees[i].user.image_profil == null) {
+                    imghead.src = '../asset/images/team-member-01.jpg';
+                } else {
+                    imghead.src = donnees[i].user.image_profil;
+                }
+                if (roles[0].id != donnees[i].user.role_model) {
+                    transaction(donnees[i].user.id);
+                }
+
                 showProfil(donnees[i].user.id);
                 var icon_menu = document.createElement("i");
                 icon_menu.classList.add("material-icons");
@@ -131,6 +142,21 @@ function afficherDonnees() {
     xhr.send();
 }
 
+function afficherRoles() {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            roles = JSON.parse(xhr.responseText);
+
+        }
+    };
+    xhr.open('GET', '/roleshow', true);
+    xhr.send();
+}
+
 function menu(moreIcon, id) {
 
     moreIcon.addEventListener("click", function() {
@@ -144,14 +170,14 @@ function menu(moreIcon, id) {
 
 }
 deletepost.addEventListener("click", function() {
-    console.log(id_global);
+
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
 
         if (xhr.readyState == 4 && xhr.status == 201) {
 
         } else {
-            console.log("echec");
+
         }
     }
     xhr.open('DELETE', '/api/post/' + id_global, true);
@@ -180,6 +206,7 @@ updatepost.addEventListener("click", function(event) {
 });
 
 function transaction(userId) {
+
     card_update_Image.addEventListener('click', function(event) {
         event.preventDefault();
         const redirectionlien = '/addtransaction/' + userId; // Remplacez par l'URL de destination

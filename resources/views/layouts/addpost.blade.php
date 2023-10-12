@@ -17,7 +17,7 @@
               </div>
               <div class="card-body">
                 <p class="pb-3">
-
+                    <a href="{{ route('home') }}" class="btn bg-gradient-success mt-3 mb-0">Home</a>
                 </p>
                 <form id="contact-form" method="post" autocomplete="off" action="{{route('store')}}" enctype="multipart/form-data">
                     {{ csrf_field() }}

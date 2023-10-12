@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ValidationController,PostController,TransactionController,ContactController};
+use App\Http\Controllers\{RoleController,ValidationController,PostController,TransactionController,ContactController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/contactshow',[ContactController::class,'contactByUser'])->name('contactshow');
     Route::get('/userofapplication',[ContactController::class,'userOfApplication'])->name('userOfApplication');
 
-
     //validation
     Route::get('/validation',[ValidationController::class,'validation'] )->name('validation');
     Route::get('/validationByUser/{idUser}',[ValidationController::class,'validationByUser'] )->name('validationByUser');
@@ -76,4 +75,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/storeTransaction', [TransactionController::class, 'store'])->name('storeTransaction');
     Route::get('/accepttransaction/{userId}', [TransactionController::class, 'update'])->name('updatetransaction');
     Route::get('/transactionreceiver',[TransactionController::class, 'transactionreceiver'])->name('transactionreceiver');
+
+//role
+Route::get('/roleshow',[RoleController::class, 'index'])->name('roleshow');
+
+
 });
+Route::get('/deletecontact/{id}',[ContactController::class,'destroy'])->name('destroy');
+
+

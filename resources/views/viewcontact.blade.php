@@ -39,8 +39,8 @@ https://templatemo.com/tm-571-hexashop
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Men's Latest</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        <h2> <a href="{{ route('home') }}">Home</a></h2>
+                        <span>cliquez sur l'image pour ajouter ce contact dans vos contacts.</span>
                         <i class="fa fa-eye"></i>
                     </div>
                 </div>
