@@ -78,7 +78,7 @@ function afficherDonnees() {
                 imghead.classList.add("imageprofil");
                 if (donnees[i].user.image_profil == null) {
                     imghead.src = '../asset/images/team-member-01.jpg';
-                } else {
+                } else if (donnees[i].user.image_profil != null) {
                     imghead.src = donnees[i].user.image_profil;
                 }
                 if (roles[0].id != donnees[i].user.role_model) {
@@ -170,7 +170,7 @@ function menu(moreIcon, id) {
 
 }
 deletepost.addEventListener("click", function() {
-
+    console.log(id_global);
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
 
@@ -180,8 +180,7 @@ deletepost.addEventListener("click", function() {
 
         }
     }
-    xhr.open('DELETE', '/api/post/' + id_global, true);
-
+    xhr.open('get', '/deletepost/' + id_global, true);
     xhr.send();
     location.reload();
 

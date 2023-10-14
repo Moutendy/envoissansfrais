@@ -3,14 +3,35 @@
 @section('content')
 
 <header>
+    @if (@empty(Auth::user()->image_desc))
     <div class="page-header min-height-400" style="background-image: url('../assets/img/city-profile.jpg');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
+    @elseif (!@empty(Auth::user()->image_desc))
+    <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
+        <span class="mask bg-gradient-dark opacity-8"></span>
+    </div>
+    @endif
+
 </header>
 <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
     <!-- START Testimonials w/ user image & text & info -->
     <section class="py-sm-7 py-5 position-relative">
         <div class="container">
+            <div>
+            <div class="d-block">
+                <span class="badge bg-gradient-success"> client </span>: Confirme avoir remis l'argent à l'agencier.
+            </div>
+            <br/>
+            <div class="d-block">
+                <span class="badge bg-gradient-success">l'agencier</span> : Confirme avoir reçu l'argent du client.
+            </div>
+            <br/>
+            <div class="d-block">
+                <span class="badge bg-gradient-success">receveur</span> : Confirme avoir reçu l'argent.
+            </div>
+            </div>
+            <br/>
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h3 class="mb-0">Note de Transaction(ok/bad)</h3>
                 <div class="d-block">
@@ -42,7 +63,7 @@
                         @if ($validationTransaction->user_send == 0)
                         <span class=" badge bg-gradient-danger">Bad</span>
                         @elseif($validationTransaction->user_send>0)
-                        <span class=" badge bg-gradient-success">Ok</span>
+                        <span class="badge bg-gradient-success">Ok</span>
                         @endif
                     </div>
                   </div>

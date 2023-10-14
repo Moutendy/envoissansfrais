@@ -20,7 +20,7 @@ class TransactionService
 
     public function store(Request $request)
     {
-        
+
         $user_agencier = User::find($request['user_agencier']);
         $user_receiver = User::find($request['user_receiver']);
 
@@ -67,6 +67,7 @@ class TransactionService
 
     public function delete($id)
     {
+        DB::table('transaction_models')->join('validation_models','validation_models.transaction_model' ,'=' ,'transaction_models.id')->where('id', $id)->delete();
         $transactionModel = transactionModel::find($id);
         if($transactionModel)
         {
@@ -76,15 +77,15 @@ class TransactionService
 
     public function showUserSend()
     {
-        return DB::select('SELECT ts.id,ts.nom_user_send,ts.tel_user_send,ts.tel_receiver,ts.nom_receiver,ts.agencier_name,ts.agencier_tel,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc, us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_send = us.id where us.id = :id',['id'=>auth()->user()->id]);}
+        return DB::select('SELECT ts.id,ts.nom_user_send,ts.tel_user_send,ts.tel_receiver,ts.nom_receiver,ts.agencier_name,ts.agencier_tel,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc, us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_send = us.id join validation_models as vt on vt.transaction_model = ts.id where us.id = :id and vt.user_receiver =:id_receveur',['id'=>auth()->user()->id,'id_receveur'=>0]);}
 
     public function showUserReceiver()
     {
-        return DB::select('SELECT ts.id,ts.nom_user_send,ts.tel_user_send,ts.tel_receiver,ts.nom_receiver,ts.agencier_name,ts.agencier_tel,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_receiver = us.id where us.id = :id',['id'=>auth()->user()->id]);}
+        return DB::select('SELECT ts.id,ts.nom_user_send,ts.tel_user_send,ts.tel_receiver,ts.nom_receiver,ts.agencier_name,ts.agencier_tel,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_receiver = us.id join validation_models as vt on vt.transaction_model = ts.id where us.id = :id and vt.user_receiver =:id_receveur',['id'=>auth()->user()->id,'id_receveur'=>0]);}
 
     public function showUserAgencier()
     {
-        return DB::select('SELECT ts.id,ts.nom_user_send,ts.tel_user_send,ts.tel_receiver,ts.nom_receiver,ts.agencier_name,ts.agencier_tel ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_agencier = us.id where us.id = :id',['id'=>auth()->user()->id]);}
+        return DB::select('SELECT ts.id,ts.nom_user_send,ts.tel_user_send,ts.tel_receiver,ts.nom_receiver,ts.agencier_name,ts.agencier_tel ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_agencier = us.id join validation_models as vt on vt.transaction_model = ts.id where us.id = :id and vt.user_receiver =:id_receveur',['id'=>auth()->user()->id,'id_receveur'=>0]);}
 
     public function showUserAgencierById($id)
     {

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{RoleController,ValidationController,PostController,TransactionController,ContactController};
+use App\Http\Controllers\{RoleController,ValidationController,PostController,TransactionController,ContactController,UserController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,10 +44,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addpost',[PostController::class, 'addviewpost'] )->name('addpost');
 
     Route::get('/updatepost/{id}', [PostController::class, 'updatepost'])->name('updatepost');
+    Route::get('/deletepost/{id}', [PostController::class, 'destroy'])->name('destroy');
+
 
      //contact
     Route::get('/contact',[ContactController::class,'index']);
-
+    Route::get('/deletecontact/{id}',[ContactController::class,'destroy'])->name('destroy');
     Route::get('/contact/{id}',[ContactController::class,'store'])->name('addcontact');
     Route::get('/contactshow',[ContactController::class,'contactByUser'])->name('contactshow');
     Route::get('/userofapplication',[ContactController::class,'userOfApplication'])->name('userOfApplication');
@@ -74,13 +76,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addtransaction/{userId}', [TransactionController::class, 'addtransaction'])->name('addtransaction');
     Route::post('/storeTransaction', [TransactionController::class, 'store'])->name('storeTransaction');
     Route::get('/accepttransaction/{userId}', [TransactionController::class, 'update'])->name('updatetransaction');
-    Route::get('/transactionreceiver',[TransactionController::class, 'transactionreceiver'])->name('transactionreceiver');
+    Route::get('/annuler/{id}', [TransactionController::class, 'destroy'])->name('annuler');
 
-//role
-Route::get('/roleshow',[RoleController::class, 'index'])->name('roleshow');
+
+    //role
+    Route::get('/roleshow',[RoleController::class, 'index'])->name('roleshow');
+
+    //user
+    Route::get('/gottoprofil', [UserController::class, 'gottoprofil'])->name('gottoprofil');
+    Route::post('/updateprofil', [UserController::class, 'updateprofil'])->name('updateprofil');
 
 
 });
-Route::get('/deletecontact/{id}',[ContactController::class,'destroy'])->name('destroy');
 
 

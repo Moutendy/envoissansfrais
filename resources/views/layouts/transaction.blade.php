@@ -118,6 +118,14 @@
                     Action</a>
                     @endif
                 </td>
+                <td class="align-middle text-center">
+                    @if (!empty($role))
+                    @if ($role->name != 'agencier')
+                    <a href="{{route('annuler',$sendTransactions->id)}}" class=" badge bg-gradient-success">
+                    Annuler</a>
+                    @endif
+                    @endif
+                </td>
               </tr>
             @endforeach
             @elseif(empty($transactionSend))

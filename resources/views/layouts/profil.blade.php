@@ -43,7 +43,9 @@
                                     @else
 
                                     @endif
-
+                                    <div class="d-block">
+                                        <a href="{{ route('gottoprofil') }}" class="btn btn-sm btn-outline-info text-nowrap mb-0">Update profil</a>
+                                    </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-auto">

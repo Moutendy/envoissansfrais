@@ -32,4 +32,9 @@
 </body>
 
 <script src="{{ asset('js/transaction/transaction.js') }}"></script>
+<script>
+    if (document.querySelector(".datepicker")) {
+       flatpickr(".datepicker", {});
+    }
+  </script>
 </html>

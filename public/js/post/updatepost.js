@@ -82,7 +82,6 @@ function filedemande(event) {
     }
 }
 
-
 function sup(id) {
     console.log(id);
     var xhr = new XMLHttpRequest();
