@@ -101,18 +101,25 @@ class ValidationController extends Controller
             $this->validationService->update($request, $id);
         }
 
+     
+        $trans = transactionModel::find($validationModel->transaction_model);
+        if($trans->user_receiver == auth()->user()->id)
+        {
+            $request['user_receiver']=1;
+            $this->validationService->update($request, $id);
+        }
+        return back();
+    }
+
+    public function noteTransactionreceiver(Request $request,$id)
+    {
+        $validationModel = validationModel::find($id);
+        $trans = transactionModel::find($validationModel->transaction_model);
         if($trans->user_receiver == auth()->user()->id)
         {
             $request['user_receiver']=1;
             $this->validationService->update($request, $id);
         }
 
-        return back();
-    }
-
-    public function noteTransactionreceiver(Request $request,$id)
-    {
-            $request['user_receiver']=1;
-            $this->validationService->update($request, $id);
     }
 }

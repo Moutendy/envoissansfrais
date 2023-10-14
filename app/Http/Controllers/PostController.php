@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Services\{UserService,PostService,RoleService,TransactionService,ContactService,ValidationService};
 use Illuminate\Http\Request;
-use App\Models\{User};
+use App\Models\{User,PostModel};
 
 class PostController extends Controller
 {
@@ -99,8 +99,8 @@ class PostController extends Controller
      */
     public function updatepost($id)
     {
-        //
-         return view('layouts.updatepost',compact('id'));
+         $post = PostModel::find($id);
+         return view('layouts.updatepost',compact('id','post'));
     }
 
     public function addviewpost()
@@ -147,5 +147,7 @@ class PostController extends Controller
 
         return view('layouts.profilByAgencier',compact('user','tval','tran','fb','contactBysUser','postBysUser'));
     }
+
+
 }
 

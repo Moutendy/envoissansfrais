@@ -62,8 +62,12 @@ class UserService
 
     public function showUser()
     {
-
         return User::orderBy('created_at', 'desc')->get();
+    }
+
+    public function updateprofil(Request $request)
+    {
+     
 
     }
 }

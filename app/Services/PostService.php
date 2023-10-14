@@ -52,7 +52,7 @@ class PostService
         if(!empty($post))
         {
 
-            return view('layouts.post');
+            return back();
         }
         return back();
     }
@@ -138,5 +138,10 @@ class PostService
         return ($v/$tr)*100;
         if($v==0)
         return 0;
+    }
+
+    public function updateProfil(Request $request)
+    {
+
     }
 }
