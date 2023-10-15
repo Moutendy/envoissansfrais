@@ -90,25 +90,26 @@ class ValidationController extends Controller
     {
         $validationModel = validationModel::find($id);
        $trans = transactionModel::find($validationModel->transaction_model);
-        if($nameUser =='client')
+        if($nameUser =='client' && $validationModel->user_agencier == 1)
         {
             $request['user_send']=1;
             $this->validationService->update($request, $id);
+            if($trans->user_receiver == auth()->user()->id && $validationModel->user_send == 1)
+            {
+                $request['user_receiver']=1;
+                $this->validationService->update($request, $id);
+                return back()->with('message',' receveur atteste avoir reçu l argent');
+            }
+            return back()->with('message',' envoyeur atteste avoir envoyer à l argent');
+
         }
         else if($nameUser =='agencier')
         {
             $request['user_agencier']=1;
             $this->validationService->update($request, $id);
+            return back()->with('message',' agencier atteste avoir envoyer l argent');
         }
-
-     
-        $trans = transactionModel::find($validationModel->transaction_model);
-        if($trans->user_receiver == auth()->user()->id)
-        {
-            $request['user_receiver']=1;
-            $this->validationService->update($request, $id);
-        }
-        return back();
+        return back()->with('message','aucune validation effectuer');
     }
 
     public function noteTransactionreceiver(Request $request,$id)

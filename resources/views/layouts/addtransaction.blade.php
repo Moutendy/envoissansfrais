@@ -22,6 +22,11 @@
                       </div>
                 </p>
                 <br/>
+                <div class="text-center">
+                    @if(session('message'))
+                    {{ session('message') }}
+                    @endif
+                </div>
                 <form id="contact-form" method="post" action="{{route('storeTransaction')}}">
                     {{ csrf_field() }}
                   <div class="card-body p-0 my-3">
@@ -62,7 +67,7 @@
                         <div class="col-md-6">
                           <div class="input-group input-group-static mb-4">
                             <label>Date début</label>
-                            <input name="start"  type="date"  id="datedebut" class="form-control datepicker" >
+                            <input name="start"  type="datetime-local"  id="datedebut" class="form-control datepicker" >
                             @if ($errors->has('start'))
                             <span class="text-danger">{{ $errors->first('start') }}</span>
                             @endif
@@ -71,7 +76,7 @@
                         <div class="col-md-6 ps-md-2">
                           <div class="input-group input-group-static mb-4">
                             <label>Date fin</label>
-                            <input name="end" type="date" id="datefin"  class="form-control datepicker">
+                            <input name="end" type="datetime-local" id="datefin"  class="form-control datepicker">
                             @if ($errors->has('end'))
                             <span class="text-danger">{{ $errors->first('end') }}</span>
                             @endif

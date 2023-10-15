@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Services\{UserService,TransactionService,ContactService,RoleService};
 use Illuminate\Http\Request;
 use App\Models\{User};
+use Carbon\Carbon;
 class TransactionController extends Controller
 {
 
@@ -104,18 +105,19 @@ class TransactionController extends Controller
     public function transactionclient()
     {
         //
-
+        $date = Carbon::now()->format('y-m-d H:i:s');
       $role = $this->roleService->showById(auth()->user()->role_model);
         if($role->name == 'agencier')
         {
            $this->showTransactions = $this->transactionService->showUserAgencier();
            $transactionSend = $this->showTransactions;
-           return view('layouts.transaction',compact('transactionSend','role'));
+
+           return view('layouts.transaction',compact('transactionSend','role','date'));
         }
 
            $this->showTransactions = $this->transactionService->showUserSend();
            $transactionSend = $this->showTransactions;
-        return view('layouts.transaction',compact('transactionSend','role'));
+        return view('layouts.transaction',compact('transactionSend','role','date'));
 
 
 

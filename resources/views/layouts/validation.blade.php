@@ -39,6 +39,11 @@
                 </div>
             </div>
      <div class="card">
+        <div class="text-center">
+            @if(session('message'))
+            {{ session('message') }}
+            @endif
+        </div>
     <div class="table-responsive">
       <table class="table align-items-center mb-0">
         <thead>

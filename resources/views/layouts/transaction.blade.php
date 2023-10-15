@@ -35,6 +35,12 @@
             </div>
 <div class="card" >
     <div class="table-responsive">
+        <div class="text-center">
+            @if(session('message'))
+            {{ session('message') }}
+            @endif
+        </div>
+
       <table class="table align-items-center mb-0">
         <thead>
           <tr>
@@ -87,9 +93,15 @@
                 <td class="align-middle text-center">
                   <span class=" badge bg-gradient-success">{{ $sendTransactions->startdate }}</span>
                 </td>
+
+
                 <td class="align-middle text-center">
-                    <span class=" badge bg-gradient-danger">{{ $sendTransactions->end }}</span>
+
+                        <span class=" badge bg-gradient-danger">{{ $sendTransactions->end }}</span>
                 </td>
+
+
+
                 <td class="align-middle">
                     @if (!empty($role))
                     @if ($role->name == 'agencier')

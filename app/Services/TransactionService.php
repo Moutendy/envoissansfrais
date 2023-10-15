@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\{transactionModel};
 use Illuminate\Support\Facades\DB;
 use App\Models\{User};
+use Carbon\Carbon;
 /**
  * Class TransactionService
  * @package App\Services
@@ -20,7 +21,11 @@ class TransactionService
 
     public function store(Request $request)
     {
+        $date1 = Carbon::createFromFormat('d/m/Y H:i:s',Carbon::parse( $request['end'])->format('d/m/Y H:i:s'));
 
+        $date2 = Carbon::createFromFormat('d/m/Y H:i:s',Carbon::parse( $request['start'])->format('d/m/Y H:i:s'));
+       if($date1->gt($date2))
+       {
         $user_agencier = User::find($request['user_agencier']);
         $user_receiver = User::find($request['user_receiver']);
 
@@ -34,9 +39,11 @@ class TransactionService
         if($transaction)
         {
             $this->validationService->store($transaction);
-            return redirect()->back()->with('message', 'Votre message ici');;
+            return redirect()->back()->with('message', 'ajout de transaction');;
         }
-        return redirect()->back()->with('message', 'Votre message ici');;
+       }
+
+        return redirect()->back()->with('message', 'Aucun ajout de transaction');
     }
      public function show()
     {
@@ -67,13 +74,14 @@ class TransactionService
 
     public function delete($id)
     {
-        DB::table('transaction_models')->join('validation_models','validation_models.transaction_model' ,'=' ,'transaction_models.id')->where('id', $id)->delete();
         $transactionModel = transactionModel::find($id);
-        if($transactionModel)
+        if($transactionModel->accept_transaction == 0)
         {
-            return response(['transaction'=>'transaction not found.'+ $transactionModel->delete()],200);
+            $transactionModel->delete();
+            return back()->with("message","Transaction annulée");
         }
-        return response(['transaction'=>'transaction not found.'],401);}
+        return back()->with("message","Impossible d'annuler ,Transaction accepter par l'agencier");
+    }
 
     public function showUserSend()
     {
@@ -90,4 +98,14 @@ class TransactionService
     public function showUserAgencierById($id)
     {
         return DB::select('SELECT ts.id ,ts.start as startdate,ts.end,ts.accept_transaction ,ts.desc , us.email,us.image_profil,us.name,us.tel FROM `users` as us join transaction_models as ts on ts.user_agencier = us.id where us.id = :id',['id'=>$id]);}
+
+        public function calculDate($dateend)
+        {
+            $date1 = Carbon::createFromFormat('d/m/Y H:i:s',Carbon::parse($dateend)->format('d/m/Y H:i:s'));
+            $date2 = Carbon::now()->format('d/m/Y H:i:s');
+            if($date1->gt($date2)){
+                return 1;
+            }
+            return 0;
+        }
 }
