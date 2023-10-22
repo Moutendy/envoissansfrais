@@ -82,23 +82,25 @@ class UserController extends Controller
         $user = User::find(auth()->user()->id);
       $image_desc = $request['image_desc'];
       $image_profil =  $request['image_profil'];
-
+      $path='app/public/users';
       if(!empty($request->file('image_desc')) && !empty($request->file('image_profil')))
       {
-        $path='app/public/users';
+
         $fileimage = $request->file('image_desc');
         $image_desc = $fileimage->getClientOriginalName();
         $request->file('image_desc')->move('storage\app\public\users',$image_desc);
 
         $image_profil = $request->file('image_profil');
-        $image_profil = $fileimage->getClientOriginalName();
+        $image_profil = $image_profil->getClientOriginalName();
         $request->file('image_profil')->move('storage\app\public\users',$image_profil);
 
         $user->update([
             'image_desc' =>URL::to('/').'/storage/'.$path.'/'.$image_desc,
-            'image_profil' =>URL::to('/').'/storage/'.$path.'/'.$image_profil,
           ]);
 
+          $user->update([
+            'image_profil' =>URL::to('/').'/storage/'.$path.'/'.$image_profil,
+          ]);
       }
       else if(!empty($request->file('image_desc')))
       {
