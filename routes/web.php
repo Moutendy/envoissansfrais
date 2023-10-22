@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/contact/{id}',[ContactController::class,'store'])->name('addcontact');
     Route::get('/contactshow',[ContactController::class,'contactByUser'])->name('contactshow');
     Route::get('/userofapplication',[ContactController::class,'userOfApplication'])->name('userOfApplication');
+    Route::get('/contactsearch',[ContactController::class,'contactsearch'])->name('contactsearch');
 
     //validation
     Route::get('/validation',[ValidationController::class,'validation'] )->name('validation');

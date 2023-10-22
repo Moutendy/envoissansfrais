@@ -1,256 +1,276 @@
-.imageprofil {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 56%;
-    margin-left: 16%;
-    box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
-    margin-top: 3% !important;
-}
-
-.post-name {
-    margin-left: 2%;
-    margin-top: 2%;
-}
-
-.imagepost {
-    display: initial;
-    height: 90% !important;
-    width: 80% !important;
-    border-radius: 57%;
-    margin-left: 7%;
-    box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
-}
-
-.text-post {
-    display: block !important;
-    font-size: 10px !important;
-    overflow: hidden;
-    /* Masque tout contenu qui dépasse */
-    word-wrap: break-word;
-    margin: 1% !important;
-}
-
-.card-image:last-child img {
-    border-bottom-left-radius: 12.25rem;
-    border-bottom-right-radius: 13.25rem;
-}
-
-.card {
-    text-align: center !important;
-    width: 70% !important;
-    position: relative !important;
-    left: 15% !important;
-    margin-top: 3%;
-}
-
-.level-left {
-    display: flex;
-}
-
-.commentaire {
-    position: relative;
-    left: 3%;
-    bottom: 9px;
-}
-
-.likepost {
-    position: relative;
-    right: 88%;
-    top: 18px;
-}
-
-.content,
-.level-item {
-    width: 100px;
-    display: inline-block;
-    margin-right: 185px;
-    text-align: center;
-}
-
-hr {
-    background-color: #f5f5f5;
-    border: none;
-    display: block;
-    height: 1px;
-}
-
-.card-content {
-    background-color: transparent;
-    padding: 0%;
-}
-
-.modal-title {
-    font-size: 10px;
-}
-
-.commentaireuser {
-    font-size: 15px;
-}
-
-.title.is-9,
-.subtitle.is-9 {
-    font-size: 70%;
-    font-weight: bold;
-}
-
-.imageprofilcomme {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 56%;
-    margin-left: -28%;
-    box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
-    margin-top: -32% !important;
-}
-
-.text-postcomment {
-    display: block !important;
-    font-size: 13px !important;
-    overflow: auto;
-    /* Masque tout contenu qui dépasse */
-    word-wrap: break-word;
-}
-
-.commentairedescription {
-    display: flex;
-    /* Hauteur du cadre */
-    background-color: #f0f0f0;
-    /* Couleur de fond grise */
-    /* Bordure grise de 2 pixels */
-    /* Espacement à l'intérieur du cadre (ajustez selon vos besoins) */
-    /* Centrage du contenu à l'intérieur du cadre */
-    display: flex;
-    border-radius: 2%;
-}
-
-.element {
-    /* Définissez la largeur ou utilisez inline-block si nécessaire */
-    /* Ou utilisez display: inline-block; */
-    display: inline-block;
-    /* Ajoutez de la marge ou de l'espace entre les éléments si nécessaire */
-    text-align: center;
-    /* Centre le contenu dans chaque élément */
-    /* Facultatif : ajoutez une bordure pour séparer les éléments */
-}
-
-.post-namecomment {
-    position: relative;
-    left: 22px;
-    top: -59px;
-    margin-left: 14px;
-}
-
-.text-comment {
-    position: relative;
-    top: 20px;
-}
-
-.media-left {
-    margin-right: 0%;
-}
-
-.mb-2 {
-    margin-top: 2%;
-}
-
-.posi-icons {
-    position: relative;
-    left: 450px;
-}
-
-.posi-icons.imageprofil {
-    display: initial;
-}
-
-.material-icons {
-    cursor: pointer;
-}
-
-.comment-options {
-    display: inline-block;
-}
-
-.comment-options-dropdown {
-    /* Masquer le pop-up initialement */
-    position: fixed;
-    top: 40%;
-    left: 40%;
-    width: 20%;
-    height: 13%;
-    /* Fond semi-transparent pour l'effet de superposition */
-    display: flex;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
-    z-index: 1;
-    text-align: center;
-}
-
-.comment-options-dropdown {
-    width: 15%;
-}
-
-.comment-options-dropdown ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.comment-options-dropdown li {
-    padding: 10px;
-    cursor: pointer;
-}
-
-.comment-options-dropdown li:hover {
-    background-color: #f5f5f5;
-}
-
-
-/* Style pour fermer la fenêtre pop-up */
-
-.popup-close {
-    position: absolute;
-    top: -8%;
-    right: 3px;
-    cursor: pointer;
-}
-
-
-/* Style de l'icône de fermeture (l'icône "times" de Font Awesome) */
-
-.popup-close i {
-    font-size: 20px;
-    color: #333;
-    /* Couleur de l'icône */
-}
-
-
-/* Au survol de l'icône, vous pouvez changer la couleur ou l'apparence */
-
-.popup-close i:hover {
-    color: red;
-    /* Couleur de l'icône au survol */
-}
-
-
-/*scroll la pages de post*/
-
-.conteneur {
-    width: 1500px;
-    /* Définissez la largeur de votre conteneur */
-    height: 900px;
-    /* Définissez la hauteur de votre conteneur */
-    overflow: auto;
-    /* Ajoutez le défilement automatique si nécessaire */
-    /* Ou utilisez 'overflow: scroll;' pour toujours afficher les barres de défilement */
-}
-
-.contenu {
-    /* Votre contenu peut dépasser la hauteur du conteneur */
-}
-
-.conteneur::-webkit-scrollbar {
-    display: none;
-}
+            .imageprofil {
+                display: block;
+                height: 100%;
+                width: 100%;
+                border-radius: 56%;
+                margin-left: 16%;
+                box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
+                margin-top: 3% !important;
+            }
+            
+            .post-name {
+                margin-left: 2%;
+                margin-top: 2%;
+            }
+            
+            .imagepost {
+                display: initial;
+                height: 90% !important;
+                width: 80% !important;
+                border-radius: 57%;
+                margin-left: 7%;
+                box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
+            }
+            
+            .text-post {
+                display: block !important;
+                font-size: 10px !important;
+                overflow: hidden;
+                /* Masque tout contenu qui dépasse */
+                word-wrap: break-word;
+                margin: 1% !important;
+            }
+            
+            .card-image:last-child img {
+                border-bottom-left-radius: 12.25rem;
+                border-bottom-right-radius: 13.25rem;
+            }
+            
+            .card {
+                text-align: center !important;
+                width: 70% !important;
+                position: relative !important;
+                left: 15% !important;
+                margin-top: 3%;
+            }
+            
+            .level-left {
+                display: flex;
+            }
+            
+            .commentaire {
+                position: relative;
+                left: 3%;
+                bottom: 9px;
+            }
+            
+            .likepost {
+                position: relative;
+                right: 88%;
+                top: 18px;
+            }
+            
+            .content,
+            .level-item {
+                width: 100px;
+                display: inline-block;
+                margin-right: 185px;
+                text-align: center;
+            }
+            
+            hr {
+                background-color: #f5f5f5;
+                border: none;
+                display: block;
+                height: 1px;
+            }
+            
+            .card-content {
+                background-color: transparent;
+                padding: 0%;
+            }
+            
+            .modal-title {
+                font-size: 10px;
+            }
+            
+            .commentaireuser {
+                font-size: 15px;
+            }
+            
+            .title.is-9,
+            .subtitle.is-9 {
+                font-size: 70%;
+                font-weight: bold;
+            }
+            
+            .imageprofilcomme {
+                display: block;
+                height: 100%;
+                width: 100%;
+                border-radius: 56%;
+                margin-left: -28%;
+                box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
+                margin-top: -32% !important;
+            }
+            
+            .text-postcomment {
+                display: block !important;
+                font-size: 13px !important;
+                overflow: auto;
+                /* Masque tout contenu qui dépasse */
+                word-wrap: break-word;
+            }
+            
+            .commentairedescription {
+                display: flex;
+                /* Hauteur du cadre */
+                background-color: #f0f0f0;
+                /* Couleur de fond grise */
+                /* Bordure grise de 2 pixels */
+                /* Espacement à l'intérieur du cadre (ajustez selon vos besoins) */
+                /* Centrage du contenu à l'intérieur du cadre */
+                display: flex;
+                border-radius: 2%;
+            }
+            
+            .element {
+                /* Définissez la largeur ou utilisez inline-block si nécessaire */
+                /* Ou utilisez display: inline-block; */
+                display: inline-block;
+                /* Ajoutez de la marge ou de l'espace entre les éléments si nécessaire */
+                text-align: center;
+                /* Centre le contenu dans chaque élément */
+                /* Facultatif : ajoutez une bordure pour séparer les éléments */
+            }
+            
+            .post-namecomment {
+                position: relative;
+                left: 22px;
+                top: -59px;
+                margin-left: 14px;
+            }
+            
+            .text-comment {
+                position: relative;
+                top: 20px;
+            }
+            
+            .media-left {
+                margin-right: 0%;
+            }
+            
+            .mb-2 {
+                margin-top: 2%;
+            }
+            
+            .posi-icons {
+                position: relative;
+                left: 450px;
+            }
+            
+            .posi-icons.imageprofil {
+                display: initial;
+            }
+            
+            .material-icons {
+                cursor: pointer;
+            }
+            
+            .comment-options {
+                display: inline-block;
+            }
+            
+            .comment-options-dropdown {
+                /* Masquer le pop-up initialement */
+                position: fixed;
+                top: 40%;
+                left: 40%;
+                width: 20%;
+                height: 13%;
+                /* Fond semi-transparent pour l'effet de superposition */
+                display: flex;
+                background-color: white;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
+                z-index: 1;
+                text-align: center;
+            }
+            
+            .comment-options-dropdown {
+                width: 15%;
+            }
+            
+            .comment-options-dropdown ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .comment-options-dropdown li {
+                padding: 10px;
+                cursor: pointer;
+            }
+            
+            .comment-options-dropdown li:hover {
+                background-color: #f5f5f5;
+            }
+            /* Style pour fermer la fenêtre pop-up */
+            
+            .popup-close {
+                position: absolute;
+                top: -8%;
+                right: 3px;
+                cursor: pointer;
+            }
+            /* Style de l'icône de fermeture (l'icône "times" de Font Awesome) */
+            
+            .popup-close i {
+                font-size: 20px;
+                color: #333;
+                /* Couleur de l'icône */
+            }
+            /* Au survol de l'icône, vous pouvez changer la couleur ou l'apparence */
+            
+            .popup-close i:hover {
+                color: red;
+                /* Couleur de l'icône au survol */
+            }
+            /*scroll la pages de post*/
+            
+            .conteneur {
+                width: 1500px;
+                /* Définissez la largeur de votre conteneur */
+                height: 900px;
+                /* Définissez la hauteur de votre conteneur */
+                overflow: auto;
+                /* Ajoutez le défilement automatique si nécessaire */
+                /* Ou utilisez 'overflow: scroll;' pour toujours afficher les barres de défilement */
+            }
+            
+            .contenu {
+                /* Votre contenu peut dépasser la hauteur du conteneur */
+            }
+            
+            .conteneur::-webkit-scrollbar {
+                display: none;
+            }
+            
+            @media (min-width: 768px) {
+                .responsiveactualite {
+                    width: 100%;
+                    /* Définissez la largeur de votre conteneur */
+                    height: 100%;
+                    /* Définissez la hauteur de votre conteneur */
+                    overflow: auto;
+                    /* Ajoutez le défilement automatique si nécessaire */
+                    /* Ou utilisez 'overflow: scroll;' pour toujours afficher les barres de défilement */
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .responsiveactualite {
+                    width: 100%;
+                    /* Définissez la largeur de votre conteneur */
+                    height: 100%;
+                    /* Définissez la hauteur de votre conteneur */
+                    overflow: auto;
+                    /* Ajoutez le défilement automatique si nécessaire */
+                    /* Ou utilisez 'overflow: scroll;' pour toujours afficher les barres de défilement */
+                }
+                .card {
+                    position: relative !important;
+                    left: 18% !important;
+                }
+            }

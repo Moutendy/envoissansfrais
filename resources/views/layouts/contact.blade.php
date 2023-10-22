@@ -28,7 +28,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h3 class="mb-0">Contact</h3>
                             <div class="d-block">
-                                <input type="text" id="contacte" class="btn btn-sm btn-outline-info text-nowrap mb-0" placeholder="Recherche Contact" />
+                                <input  type="text" id="contacte" class="btn btn-sm btn-outline-info text-nowrap mb-0" placeholder="Recherche Contact" onkeyup=search() />
                             </div>
                         </div>
 
@@ -36,7 +36,7 @@
                         <div class="row py-5">
                             <div class="card">
                              <div class="table-responsive">
-                                <table class="table align-items-center mb-0">
+                                <table class="table align-items-center mb-0" id="table">
                                   <thead>
                                     <tr>
                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
@@ -47,7 +47,7 @@
                                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delete</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
+                                  <tbody id="bodyvalue">
                                     @if ($contacts)
                                     @foreach($contacts as $contact)
 

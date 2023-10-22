@@ -59,7 +59,7 @@
         </div>
     </div>
 </nav>
-<div class="columns body-columns conteneur">
+<div class="columns body-columns conteneur responsiveactualite">
 
     <div class="column is-half is-offset-one-quarter" id="card-container">
     </div>
