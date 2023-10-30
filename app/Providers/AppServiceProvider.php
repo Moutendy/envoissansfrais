@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind('path.public',function (){
+            return base_path(). '/public_html';
+        });
+        app()->usePublicPath(base_path(). '/public_html');
     }
 
     /**
@@ -21,8 +25,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
         //
+         if (env('APP_ENV') == 'production') {
+         $url->forceScheme('https');
+     }
     }
 }
