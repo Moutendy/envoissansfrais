@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{RoleController,ValidationController,PostController,TransactionController,ContactController,UserController};
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,4 +92,8 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//send email
 
+Route::get('/email', function (){
+
+});
