@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{RoleController,ValidationController,PostController,TransactionController,ContactController,UserController};
+use App\Http\Controllers\{EmailController,RoleController,ValidationController,PostController,TransactionController,ContactController,UserController};
 
 
 /*
@@ -94,6 +94,4 @@ Route::middleware(['auth'])->group(function () {
 
 //send email
 
-Route::get('/email', function (){
-
-});
+Route::get('/email/{userId}', [EmailController::class, 'sendEmailRegister']);
