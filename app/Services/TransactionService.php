@@ -13,10 +13,11 @@ use Carbon\Carbon;
 class TransactionService
 {
     private ValidationService $validationService;
-
-    public function __construct(ValidationService $validationService)
+    private EmailService $emailService;
+    public function __construct(EmailService $emailService,ValidationService $validationService)
     {
         $this->validationService = $validationService;
+        $this->emailService = $emailService;
     }
 
     public function store(Request $request)
@@ -36,6 +37,7 @@ class TransactionService
         $request['nom_user_send'] = auth()->user()->name;
         $request['tel_user_send'] = auth()->user()->tel;
         $transaction = transactionModel::create($request->all());
+        $this->emailService->sendEmailNewTransaction($user_agencier);
         if($transaction)
         {
             $this->validationService->store($transaction);

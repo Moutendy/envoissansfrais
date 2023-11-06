@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Models\PostModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use App\Services\ImageService;
+use App\Services\{ImageService,EmailService};
 use Illuminate\Support\Facades\DB;
 /**
  * Class PostService
@@ -16,9 +16,12 @@ class PostService
 
     protected ImageService $imageService;
     public $fb;
-    public function __construct(ImageService $imageService)
+    protected EmailService $emailService;
+    public function __construct(ImageService $imageService,EmailService $emailService)
     {
         $this->imageService = $imageService;
+
+        $this->emailService = $emailService;
     }
 
     public function index()
@@ -51,7 +54,7 @@ class PostService
 
         if(!empty($post))
         {
-
+            $this->emailService->sendEmailForNewPost();
             return back();
         }
         return back();

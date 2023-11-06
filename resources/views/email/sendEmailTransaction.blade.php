@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -11,7 +12,7 @@
         }
 
         .card {
-            width: 800px !important;
+            width: 400px !important;
             padding: 20px;
             background-color: #FEFEFE;
             border: 1px solid #7aecf8;
@@ -33,14 +34,15 @@
   <body>
     <div class="card">
         <div class="card-body">
-          <h1 class="card-title">Inscription</h1>
-          <h6 class="card-subtitle mb-2 text-muted">Inscription Réussi !!!</h6>
-          <p class="card-text">
-            Bienvenu <strong> {{$user['name']}} </strong>sur Envoi sans frais
-            <br/>
-            Nous sommes ravis de vous accueillir sur Envoi sans frais ! C'est un plaisir de vous accueillir dans notre communauté en ligne.
+          <h1 class="card-title">New Transaction</h1>
 
-            Votre inscription marque le début d'une expérience passionnante. Chez Envoisansfrais, nous nous efforçons de fournir un espace unique où vous pourrez effectuer les transfert d'argent en tout securité sur notre site.
+          <p class="card-text">
+
+            <br/>
+            Cher <strong>{{$agencier['name']}} ,</strong>
+            Nous sommes ravis de vous informer qu'une nouvelle transaction a été effectuée avec succès sur votre compte. 🎉
+            <strong>Accepter et finaliser</strong> la transaction pour ameliorer votre profil d'agencier
+            Visité sur {{ $url }}
         </p>
         </div>
       </div>

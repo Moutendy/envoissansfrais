@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\{UserService,TransactionService,ContactService,RoleService};
+use App\Services\{UserService,TransactionService,ContactService,RoleService,EmailService};
 use Illuminate\Http\Request;
 use App\Models\{User};
 use Carbon\Carbon;
@@ -15,6 +15,7 @@ class TransactionController extends Controller
     private RoleService $roleService;
 
     private UserService $userService;
+
 
     public $showTransactions;
 
@@ -106,7 +107,7 @@ class TransactionController extends Controller
     {
         //
         $date = Carbon::now()->format('y-m-d H:i:s');
-      $role = $this->roleService->showById(auth()->user()->role_model);
+        $role = $this->roleService->showById(auth()->user()->role_model);
         if($role->name == 'agencier')
         {
            $this->showTransactions = $this->transactionService->showUserAgencier();
