@@ -16,7 +16,10 @@ class EmailController extends Controller
     }
 
     public function sendEmailRegister($userId){
-
         $this->serviceEmail->sendEmailRegister($userId);
+    }
+
+    public function sendEmailAccepterTransaction(){
+        $this->serviceEmail->sendEmailReceptionOfColis('teste');
     }
 }

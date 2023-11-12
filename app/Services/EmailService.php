@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-use App\Mail\{SendEmail,SendEmailForPost,SendEmailNewTransaction};
+use App\Mail\{ReceptionColisReceptionnerTransaction,EmisColisTransaction,SendEmailAccepterForReceptionnerTransaction,ReceptionColisAgentTransaction,SendEmail,SendEmailForPost,SendEmailNewTransaction,SendEmailTransactionAccepter};
 use Illuminate\Support\Facades\Mail;
 use App\Models\{User};
 use Illuminate\Support\Facades\URL;
@@ -42,16 +42,35 @@ public function sendEmailNewTransaction($agencier){
     $url = URL::to('/').'';
     Mail::to($agencier->email)
     ->send(new SendEmailNewTransaction($agencier,auth()->user()->email,$url));
-
 }
-// public function sendEmailAccepterTransaction($email){
-//     Mail::to($email)
-//         ->send(new SendEmail());
-// }
+public function sendEmailAccepterTransaction($agent){
+    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+    Mail::to($destinataires)
+        ->send(new SendEmailTransactionAccepter($agent));
+}
 
-// public function sendEmailValideTransaction($email){
-//     Mail::to($email)
-//         ->send(new SendEmail());
-// }
+public function sendEmailAccepterForReceptionnerTransaction($agent){
+    $destinataires = ['moutendy1@gmail.com'];
+    Mail::to($destinataires)
+        ->send(new SendEmailAccepterForReceptionnerTransaction($agent));
+}
 
+public function sendEmailReceptionOfColisAgent($agent){
+    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+    Mail::to($destinataires)
+        ->send(new ReceptionColisAgentTransaction($agent));
+}
+
+public function sendEmailEmisOfColisToAgent($agent){
+    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+    Mail::to($destinataires)
+        ->send(new EmisColisTransaction($agent));
+}
+
+
+public function sendEmailReceptionOfColis($agent){
+    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+    Mail::to($destinataires)
+        ->send(new ReceptionColisReceptionnerTransaction($agent));
+}
 }
