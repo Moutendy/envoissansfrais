@@ -95,3 +95,4 @@ Route::middleware(['auth'])->group(function () {
 //send email
 
 Route::get('/email/{userId}', [EmailController::class, 'sendEmailRegister']);
+Route::get('/sendEmailAccepterTransaction', [EmailController::class, 'sendEmailAccepterTransaction']);

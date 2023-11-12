@@ -49,12 +49,13 @@
 
   <body>
     <div class="message-container success">
-        <h2>Inscription Réussi !!!!</h2>
-        <p>Bienvenu <strong> {{$user['name']}} </strong>sur Envoi sans frais
-            <br/>
-            Nous sommes ravis de vous accueillir sur Envoi sans frais ! C'est un plaisir de vous accueillir dans notre communauté en ligne.
-
-            Votre inscription marque le début d'une expérience passionnante. Chez Envoisansfrais, nous nous efforçons de fournir un espace unique où vous pourrez effectuer les transfert d'argent en tout securité sur notre site.</p>
+        <p>
+        <h2>Accepté(e) !!!!</h2>
+            Bienvenu sur Envoisansfrais.
+        <br/>
+           Une transaction a été accepté pour vous,l'agent xxx vous contactera pour la suite de la transaction.<br/>
+           Cordialement.
+        </p>
     </div>
   </body>
 </html>

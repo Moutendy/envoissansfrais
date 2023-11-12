@@ -3,43 +3,54 @@
   <head>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
         }
 
-        .card {
-            width: 800px !important;
-            height:400px !important;
+        .message-container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #f4f4f4;
             padding: 20px;
-            background-color: #FEFEFE;
-            border: 1px solid #7aecf8;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .card-title{
-            color: #7aecf8 !important;
-            font-size:20px;
+
+        h2 {
+            color: #333;
         }
-        .card-subtitle{
-            text-decoration-color: #7aecf8 !important;
-            font-size:13px;
+
+        p {
+            color: #555;
         }
-        .card-text{
-            font-size:50px;
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
         }
     </style>
   </head>
 
   <body>
-    <div class="card">
-        <div class="card-body">
-          <h1 class="card-title">New Post</h1>
-
-          <p class="card-text">
+    <div class="message-container info">
+        <h2>Information</h2>
+        <p>
             Cher <strong>{{$contact->name}} </strong>,
             J'espère que vous allez bien. Je voulais simplement vous informer que j'ai effectué un nouveau post sur un envoi d'argent disponible maintenant.
             N'hésitez pas à me contacter pour une transaction.
@@ -47,8 +58,6 @@
             Prenez bien soin de vous.
             Cordialement.
         </p>
-        </div>
-      </div>
-
+    </div>
   </body>
 </html>
