@@ -67,8 +67,10 @@ class TransactionService
     public function update(Request $request,$id)
     {
         $transactionModel = transactionModel::find($id);
+
         if($transactionModel->update($request->all()))
         {
+            $this->emailService->sendEmailAccepterTransaction($transactionModel->user_send,$transactionModel->user_receiver);
             return redirect()->back()->with("modifier");
         }
         return response(['transaction'=>'not Update transaction.'],401);

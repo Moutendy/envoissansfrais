@@ -50,7 +50,7 @@
   <body>
     <div class="message-container success">
         <p>
-        <h2>Accepté(e) !!!!</h2>
+        <h2>Receptionneur Accepté(e) !!!!</h2>
             Bienvenu sur Envoisansfrais.
         <br/>
            Une transaction a été accepté pour vous,l'agent xxx vous contactera pour la suite de la transaction.<br/>

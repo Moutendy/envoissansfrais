@@ -10,16 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class SendEmailTransactionAccepter extends Mailable
 {
     use Queueable, SerializesModels;
-    public $agencier;
+    public $user_send;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($agencier)
+    public function __construct($user_send)
     {
         //
-        $this->agencier = $agencier;
+        $this->user_send = $user_send;
     }
 
     /**

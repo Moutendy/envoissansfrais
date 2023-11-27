@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\{User};
 use Illuminate\Support\Facades\URL;
 use App\Services\ContactService;
+use Illuminate\Support\Facades\DB;
 /**
  * Class EmailService
  * @package App\Services
@@ -30,7 +31,6 @@ public function sendEmailForNewPost(){
     $url = URL::to('/').'';
     foreach($contacts as $contact)
     {
-
         Mail::to(auth()->user()->email)
             ->send(new SendEmailForPost($contact,$url));
             sleep(3);
@@ -43,34 +43,75 @@ public function sendEmailNewTransaction($agencier){
     Mail::to($agencier->email)
     ->send(new SendEmailNewTransaction($agencier,auth()->user()->email,$url));
 }
-public function sendEmailAccepterTransaction($agent){
-    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+public function sendEmailAccepterTransaction($user_send_id,$user_receiver_id){
+    $user_send = User::find($user_send_id);
+    $destinataires = [$user_send->email];
+    $this->sendEmailAccepterForReceptionnerTransaction($user_receiver_id);
     Mail::to($destinataires)
-        ->send(new SendEmailTransactionAccepter($agent));
+        ->send(new SendEmailTransactionAccepter($user_send));
 }
 
-public function sendEmailAccepterForReceptionnerTransaction($agent){
-    $destinataires = ['moutendy1@gmail.com'];
-    Mail::to($destinataires)
-        ->send(new SendEmailAccepterForReceptionnerTransaction($agent));
+public function sendEmailAccepterForReceptionnerTransaction($id){
+
+    $user_receiver = User::find($id);
+    Mail::to($user_receiver->email)
+        ->send(new SendEmailAccepterForReceptionnerTransaction($user_receiver));
 }
 
-public function sendEmailReceptionOfColisAgent($agent){
-    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+public function sendEmailReceptionOfColisAgent($receveur_name,$send_name){
+    $user_receveur = User::where('name',$send_name)->get();
+    $user_agent = User::where('name',$receveur_name)->get();
+    foreach($user_receveur as  $p)
+    {
+        $email = $p->email;
+    }
+
+    foreach($user_agent as  $p)
+    {
+        $email_agent = $p->email;
+    }
+   $destinataires = [$email,$email_agent];
     Mail::to($destinataires)
-        ->send(new ReceptionColisAgentTransaction($agent));
+        ->send(new ReceptionColisAgentTransaction($destinataires));
 }
 
-public function sendEmailEmisOfColisToAgent($agent){
-    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+public function sendEmailEmisOfColisToAgent($agencier_name,$receveur_name){
+//$email_agent = DB::select('SELECT email FROM `users` where name=:name',['name'=>$agencier_name]);
+    // $email_receveur = DB::select('SELECT email FROM `users` where name=:name',['name'=>$receveur_name]);
+     $user_receveur = User::where('name',$agencier_name)->get();
+     $user_agent = User::where('name',$receveur_name)->get();
+    // $destinataires = [$email_agent];
+
+    foreach($user_receveur as  $p)
+    {
+        $email = $p->email;
+    }
+
+    foreach($user_agent as  $p)
+    {
+        $email_agent = $p->email;
+    }
+   $destinataires = [$email,$email_agent];
     Mail::to($destinataires)
-        ->send(new EmisColisTransaction($agent));
+        ->send(new EmisColisTransaction($user_receveur));
+
 }
 
 
-public function sendEmailReceptionOfColis($agent){
-    $destinataires = ['christophermoutendy@gmail.com', 'moutendy1@gmail.com'];
+public function sendEmailReceptionOfColis($agencier_name,$send_name){
+    $user_receveur = User::where('name',$agencier_name)->get();
+     $user_agent = User::where('name',$send_name)->get();
+     foreach($user_receveur as  $p)
+     {
+         $email = $p->email;
+     }
+
+     foreach($user_agent as  $p)
+     {
+         $email_agent = $p->email;
+     }
+    $destinataires = [$email,$email_agent];
     Mail::to($destinataires)
-        ->send(new ReceptionColisReceptionnerTransaction($agent));
+        ->send(new ReceptionColisReceptionnerTransaction($destinataires));
 }
 }

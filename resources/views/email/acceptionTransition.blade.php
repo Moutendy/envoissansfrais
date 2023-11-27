@@ -50,7 +50,7 @@
   <body>
     <div class="message-container success">
         <p>
-        <h2>Inscription Réussi !!!!</h2>
+        <h2>Emetteur Inscription Réussi !!!!</h2>
             Bienvenu sur Envoisansfrais.
         <br/>
             Votre transaction a été accepté par l'agent xxxxxx.<br/>
