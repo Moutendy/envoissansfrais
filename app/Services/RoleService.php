@@ -19,7 +19,7 @@ class RoleService
     public function show()
     {
 
-        return DB::select('SELECT * FROM `role_models` WHERE id not in(3,1)');
+        return DB::select('SELECT * FROM `role_models` WHERE id not in(1)');
     }
     public function showById($id)
     {

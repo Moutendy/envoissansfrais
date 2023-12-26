@@ -95,13 +95,14 @@ class ValidationController extends Controller
         if($nameUser =='client')
         {
             $request['user_send']=1;
-           $this->emailService->sendEmailEmisOfColisToAgent($trans->agencier_name,$trans->nom_receiver);
+           $this->emailService->sendEmailEmisOfColisToAgent($trans->user_agencier,$trans->user_receiver);
             $this->validationService->update($request, $id);
             if($trans->user_receiver == auth()->user()->id && $validationModel->user_send == 1)
             {
                 $request['user_receiver']=1;
                 $this->validationService->update($request, $id);
-                $this->emailService->sendEmailEmisOfColisToAgent($trans->agencier_name,$trans->nom_user_send);
+                $this->emailService->sendEmailReceptionOfColis($trans->user_agencier,$trans->user_send);
+
                 return back()->with('message',' receveur atteste avoir reçu l argent');
             }
             return back()->with('message',' envoyeur atteste avoir envoyer à l argent');
@@ -111,6 +112,7 @@ class ValidationController extends Controller
         {
             $request['user_agencier']=1;
             $this->validationService->update($request, $id);
+            $this->emailService->sendEmailReceptionOfColisAgent($trans->user_send,$trans->user_receiver);
             return back()->with('message',' agencier atteste avoir envoyer l argent');
         }
        return back()->with('message','aucune validation effectuer');
