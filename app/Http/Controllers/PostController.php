@@ -124,10 +124,10 @@ class PostController extends Controller
         {
            $this->showTransactions = $this->transactionService->showUserSend();
         }
-        $transactionSend = count($this->showTransactions);
-        $post =  count($this->postBysUser);
-        $val = count($this->pvalBysUser);
-        $cont = count($this->contactBysUser);
+        $transactionSend = is_array($this->showTransactions)? count($this->showTransactions) :0;
+        $post = is_array($this->postBysUser)? count($this->postBysUser) :0;
+        $val = is_array($this->pvalBysUser)? count($this->pvalBysUser) :0;
+        $cont = is_array($this->contactBysUser)? count($this->contactBysUser):0;
         return view('layouts.profil',compact('transactionSend','post','val','role','cont','contactNewBysUser'));
 
     }
@@ -139,11 +139,11 @@ class PostController extends Controller
 
     public function profilAgencier($id) {
         $user = User::find($id);
-        $tval = count($this->validationService->validationTransByUserById($user->tel));
-        $tran = count($this->transactionService->showUserAgencierById($id));
+        $tval = is_array($this->validationService->validationTransByUserById($user->tel))? count($this->validationService->validationTransByUserById($user->tel)):0;
+        $tran = is_array($this->transactionService->showUserAgencierById($id))? count($this->transactionService->showUserAgencierById($id)) :0;
         $fb = $this->postService->fiable($tran,$tval);
-        $contactBysUser = count($this->contactService->showOfAgencier($id));
-        $postBysUser = count($this->postService->postByAgencier($id));
+        $contactBysUser = is_array($this->contactService->showOfAgencier($id))? count($this->contactService->showOfAgencier($id)) :0;
+        $postBysUser = is_array($this->postService->postByAgencier($id))? count($this->postService->postByAgencier($id)) :0;
 
         return view('layouts.profilByAgencier',compact('user','tval','tran','fb','contactBysUser','postBysUser'));
     }
