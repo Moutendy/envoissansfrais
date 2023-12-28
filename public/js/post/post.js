@@ -80,7 +80,7 @@ function afficherDonnees() {
                 if (donnees[i].user.image_profil == null) {
                     imghead.src = '../asset/images/team-member-01.jpg';
                 } else if (donnees[i].user.image_profil != null) {
-                    imghead.src = donnees[i].user.image_profil;
+                    imghead.src = "storage/app/public/users/" + donnees[i].user.image_profil;
                 }
                 if (roles[0].id != donnees[i].user.role_model) {
                     transaction(donnees[i].user.id);
@@ -126,8 +126,8 @@ function afficherDonnees() {
                 figurepost.classList.add("is-4by3");
                 var img = document.createElement("img");
                 img.classList.add("imagepost");
-                img.src = donnees[i].image;
-                console.log(donnees[i].image);
+                img.src = "storage/app/public/posts/" + donnees[i].image;
+
                 card_image.appendChild(title);
                 figurepost.appendChild(img);
                 card_image.appendChild(figurepost);
