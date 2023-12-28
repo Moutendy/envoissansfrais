@@ -44,7 +44,7 @@ class PostService
             $path='app/public/posts';
             $fileimage = $request->file('image');
             $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
-            $request->file('image')->move('storage\app\public\posts',$nameimage);
+            $request->file('image')->move('storage/app/public/posts',$nameimage);
 
     }
         $post = PostModel::create([
