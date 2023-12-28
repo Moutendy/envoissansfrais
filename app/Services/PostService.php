@@ -104,10 +104,8 @@ class PostService
         if ($post->user != auth()->user()->id) {
             return response(['message' => 'Permission denied.'], 403);
         }
-        if ($post->user == auth()->user()->id) {
-            $post->delete();
-            return response(['message' => 'post supprimé'], 201);
-        }
+
+        $post->delete();
         return response(['message' => auth()->user()->id], 201);
     }
 
