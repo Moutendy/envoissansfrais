@@ -98,12 +98,7 @@ class PostService
     public function destroy($id)
     {
         $post = PostModel::find($id);
-        if (!$post) {
-            return response(['message' => 'Aucun post avec cette id.'], 404);
-        }
-        if ($post->user != auth()->user()->id) {
-            return response(['message' => 'Permission denied.'], 403);
-        }
+       
 
         $post->delete();
         return response(['message' => auth()->user()->id], 201);
