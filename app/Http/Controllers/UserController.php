@@ -91,12 +91,12 @@ class UserController extends Controller
       //  $image_desc = $fileimage->getClientOriginalName();
         $image_desc = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
 
-        $request->file('image_desc')->move('storage\app\public\users',$image_desc);
+        $request->file('image_desc')->move('storage/app/public/users',$image_desc);
 
         $image_profil = $request->file('image_profil');
         $name_profil = Str::random(8).''.mt_Rand(1000, 9999).''.$image_profil->getClientOriginalName();
 
-        $request->file('image_profil')->move('storage\app\public\users',$name_profil);
+        $request->file('image_profil')->move('storage/app/public/users',$name_profil);
 
         $user->update([
             'image_desc' =>$image_desc,
@@ -112,7 +112,7 @@ class UserController extends Controller
         $fileimage = $request->file('image_desc');
         $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
         $image_desc = $fileimage->getClientOriginalName();
-        $request->file('image_desc')->move('storage\app\public\users',$nameimage);
+        $request->file('image_desc')->move('storage/app/public/users',$nameimage);
 
         $user->update([
             'image_desc' => $nameimage,
@@ -124,7 +124,7 @@ class UserController extends Controller
         $fileimage = $request->file('image_profil');
         $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
         $image_profil = $fileimage->getClientOriginalName();
-        $request->file('image_profil')->move('storage\app\public\users',$nameimage);
+        $request->file('image_profil')->move('storage/app/public/users',$nameimage);
 
         $user->update([
             'image_profil' => $nameimage,
