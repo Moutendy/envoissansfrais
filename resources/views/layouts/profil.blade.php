@@ -4,7 +4,7 @@
     @if (@empty(Auth::user()->image_desc))
     <div class="page-header min-height-400" style="background-image: url('../asset/images/men-03.jpg');" loading="lazy">
     @elseif (!@empty(Auth::user()->image_desc))
-    <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
+    <div class="page-header min-height-400" style="background-image: url('{{ asset(Auth::user()->image_desc) }}');" loading="lazy">
         @endif
         <span class="mask bg-gradient-dark opacity-8"></span>
 
@@ -24,7 +24,7 @@
 
                                 <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../asset/images/men-01.jpg" alt="image" loading="lazy">
                                 @elseif (!@empty(Auth::user()->image_profil))
-                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="image" loading="lazy">
+                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{asset( Auth::user()->image_profil) }}" alt="image" loading="lazy">
                                 @endif
                         </a>
                         </div>
