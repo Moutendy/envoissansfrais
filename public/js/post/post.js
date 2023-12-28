@@ -31,6 +31,7 @@ function afficherDonnees() {
         if (xhr.readyState == 4 && xhr.status == 201) {
 
             donnees = JSON.parse(xhr.responseText);
+            console.log(donnees);
             menuicon.classList.add("comment-options-dropdown");
             menuicon.style.display = 'none';
             var ul = document.createElement("ul");
@@ -40,7 +41,7 @@ function afficherDonnees() {
             ul.appendChild(updatepost);
             ul.appendChild(deletepost);
             cardContainer.appendChild(menuicon);
-            console.log(roles[0].id)
+
             for (; i < donnees.length; i++) {
 
 
@@ -126,7 +127,7 @@ function afficherDonnees() {
                 var img = document.createElement("img");
                 img.classList.add("imagepost");
                 img.src = donnees[i].image;
-
+                console.log(donnees[i].image);
                 card_image.appendChild(title);
                 figurepost.appendChild(img);
                 card_image.appendChild(figurepost);

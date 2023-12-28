@@ -6,6 +6,7 @@ use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Models\{User};
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 class UserController extends Controller
 {
 
@@ -87,41 +88,46 @@ class UserController extends Controller
       {
 
         $fileimage = $request->file('image_desc');
-        $image_desc = $fileimage->getClientOriginalName();
+      //  $image_desc = $fileimage->getClientOriginalName();
+        $image_desc = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
+
         $request->file('image_desc')->move('storage\app\public\users',$image_desc);
 
         $image_profil = $request->file('image_profil');
-        $image_profil = $image_profil->getClientOriginalName();
-        $request->file('image_profil')->move('storage\app\public\users',$image_profil);
+        $name_profil = Str::random(8).''.mt_Rand(1000, 9999).''.$image_profil->getClientOriginalName();
+
+        $request->file('image_profil')->move('storage\app\public\users',$name_profil);
 
         $user->update([
-            'image_desc' =>URL::to('/').'/storage/'.$path.'/'.$image_desc,
+            'image_desc' =>$image_desc,
           ]);
 
           $user->update([
-            'image_profil' =>URL::to('/').'/storage/'.$path.'/'.$image_profil,
+            'image_profil' =>$name_profil,
           ]);
       }
       else if(!empty($request->file('image_desc')))
       {
         $path='app/public/users';
         $fileimage = $request->file('image_desc');
+        $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
         $image_desc = $fileimage->getClientOriginalName();
-        $request->file('image_desc')->move('storage\app\public\users',$image_desc);
+        $request->file('image_desc')->move('storage\app\public\users',$nameimage);
 
         $user->update([
-            'image_desc' =>URL::to('/').'/storage/'.$path.'/'.$image_desc,
+            'image_desc' => $nameimage,
           ]);
 
       } else if(!empty($request->file('image_profil')))
       {
         $path='app/public/users';
         $fileimage = $request->file('image_profil');
+        $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
         $image_profil = $fileimage->getClientOriginalName();
-        $request->file('image_profil')->move('storage\app\public\users',$image_profil);
+        $request->file('image_profil')->move('storage\app\public\users',$nameimage);
 
         $user->update([
-            'image_profil' => URL::to('/').'/storage/'.$path.'/'.$image_profil,
+            'image_profil' => $nameimage,
           ]);
 
       }

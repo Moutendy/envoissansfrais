@@ -67,7 +67,7 @@ https://templatemo.com/tm-571-hexashop
                                                 @if (@empty($contactNewBysUsers->image_profil))
                                                 <img src="../asset/images/explore-image-02.jpg" alt="">
                                                 @endif
-                                                <img src="{{ $contactNewBysUsers->image_profil }}" alt="">
+                                                <img src="{{asset('storage/app/public/users/'. $contactNewBysUsers->image_profil) }}" alt="">
                                             </a>
                                         </div>
                                         <div class="down-content">

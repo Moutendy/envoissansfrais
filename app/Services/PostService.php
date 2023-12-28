@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App\Services\{ImageService,EmailService};
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 /**
  * Class PostService
  * @package App\Services
@@ -42,14 +43,14 @@ class PostService
 
             $path='app/public/posts';
             $fileimage = $request->file('image');
-            $nameimage = $fileimage->getClientOriginalName();
+            $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
             $request->file('image')->move('storage\app\public\posts',$nameimage);
 
     }
         $post = PostModel::create([
             'desc' => $attrs['desc'],
             'user' => auth()->user()->id,
-            'image' => URL::to('/').'/storage/'.$path.'/'.$nameimage,
+            'image' => $nameimage,
         ]);
 
         if(!empty($post))
@@ -71,10 +72,10 @@ class PostService
         {
             $path='app/public/posts';
             $fileimage = $request->file('image');
-            $nameimage = $fileimage->getClientOriginalName();
+            $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
             $request->file('image')->move('storage\app\public\posts',$nameimage);
 
-            $post->update(['image'=>URL::to('/').'/storage/'.$path.'/'.$nameimage,
+            $post->update(['image'=>$nameimage,
            'desc'=>$request->desc]);
         }
         else   if(!Empty($request->file('image'))){
@@ -82,10 +83,10 @@ class PostService
 
                 $path='app/public/posts';
                 $fileimage = $request->file('image');
-                $nameimage = $fileimage->getClientOriginalName();
+                $nameimage = Str::random(8).''.mt_Rand(1000, 9999).''.$fileimage->getClientOriginalName();
                 $request->file('image')->move('storage\app\public\posts',$nameimage);
 
-                $post->update(['image'=>URL::to('/').'/storage/'.$path.'/'.$nameimage]);
+                $post->update(['image'=>$nameimage]);
         }
         else if(!Empty($request->desc)){
             $post->update([

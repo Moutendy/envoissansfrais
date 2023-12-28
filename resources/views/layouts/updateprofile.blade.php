@@ -9,7 +9,7 @@
             @if (@empty(Auth::user()->image_desc))
             <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../asset/images/men-03.jpg'); background-size: cover;" loading="lazy"></div>
             @elseif (!@empty(Auth::user()->image_desc))
-            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('{{ Auth::user()->image_desc }}'); background-size: cover;" loading="lazy"></div>
+            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('{{asset('storage/app/public/users/'.Auth::user()->image_desc )}}'); background-size: cover;" loading="lazy"></div>
                 @endif
                 <span class="mask bg-gradient-dark opacity-8"></span>
 
@@ -34,7 +34,7 @@
                @if (@empty(Auth::user()->image_profil))
                Photo de profil : <img src="../asset/images/men-03.jpg" class="col-md-3"/>
                @elseif (!@empty(Auth::user()->image_profil))
-               Photo de profil : <img src="{{ Auth::user()->image_profil }}"/>
+               Photo de profil : <img src="{{ asset('storage/app/public/users/'.Auth::user()->image_profil )}}"/>
                 @endif
                 </div>
                 </p>

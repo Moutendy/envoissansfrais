@@ -47,7 +47,7 @@
                                                     @if (@empty($user->image_profil))
                                                     <img src="../asset/images/men-03.jpg" class="avatar avatar-sm me-3">
                                                    @else
-                                                   <img src="{{ $user->image_profil}}" class="avatar avatar-sm me-3">
+                                                   <img src="{{asset('storage/app/public/users/'.$user->image_profil)}}" class="avatar avatar-sm me-3">
                                                     @endif
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">

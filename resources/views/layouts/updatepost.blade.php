@@ -8,7 +8,7 @@
           <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
             @if(!@empty(Auth::user()->image_desc))
 
-            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('{{  Auth::user()->image_desc }}'); background-size: cover;" loading="lazy"></div>
+            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('{{ asset('storage/app/public/users/'. Auth::user()->image_desc) }}'); background-size: cover;" loading="lazy"></div>
 
             @elseif(@empty(Auth::user()->image_desc))
             <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signin.jpg'); background-size: cover;" loading="lazy"></div>
@@ -32,7 +32,7 @@
                 <br/>
                 <p class="input-group input-group-static mb-4">
                 @if(!@empty($post))
-                    <img src="{{ $post->image }}"/>
+                    <img src="{{ asset('storage/app/public/posts/'.$post->image )}}"/>
                 @endif
                 </p>
                 <form id="contact-form" action="/post/{{ $id }}" method="post"
