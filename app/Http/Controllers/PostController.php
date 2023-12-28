@@ -87,9 +87,17 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-        return $this->postService->destroy($id);
+        $post = PostModel::find($id);
+        return view('layouts.deletepost',compact('id','post'));
+      //  return $this->postService->destroy($id);
     }
 
+    public function destroyact($id)
+    {
+
+         $this->postService->destroy($id);
+         return back();
+    }
 
       /**
      * Remove the specified resource from storage.

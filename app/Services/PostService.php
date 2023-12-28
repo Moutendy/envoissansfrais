@@ -53,12 +53,12 @@ class PostService
             'image' => $nameimage,
         ]);
 
-        if(!empty($post))
-        {
-            $this->emailService->sendEmailForNewPost();
-            return back();
-        }
-        return back();
+        // if(!empty($post))
+        // {
+        //     $this->emailService->sendEmailForNewPost();
+        //     return back()->with('success', 'image bien ajouter!!');
+        // }
+        return back()->with('success', 'post bien ajouter!!');
     }
 
 
@@ -92,16 +92,24 @@ class PostService
             $post->update([
             'desc'=>$request->desc]);
         }
-        return back()->with('success', 'Image Ajouter!');
+        return back()->with('success', 'image bien modifier!!');
     }
 
     public function destroy($id)
     {
         $post = PostModel::find($id);
-       
+        if (!$post) {
+            return back()->with('erreur', 'Aucun post avec cette id.!!');
+        }
+        if ($post->user != auth()->user()->id) {
+            return back()->with('erreur', 'Permission denied.!!');
+        }
+        if ($post->user == auth()->user()->id) {
+            $post->delete();
+            return back()->with('success', 'post supprimé!!');
+        }
 
-        $post->delete();
-        return response(['message' => auth()->user()->id], 201);
+        return back()->with('erreur',+auth()->user()->id);
     }
 
 

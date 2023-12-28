@@ -32,9 +32,14 @@
                 <br/>
                 <p class="input-group input-group-static mb-4">
                 @if(!@empty($post))
-                    <img src="{{ asset('storage/app/public/posts/'.$post->image )}}"/>
+                    <img class="updatepost" src="{{ asset('storage/app/public/posts/'.$post->image )}}"/>
                 @endif
                 </p>
+                @if(session('success'))
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
+@endif
                 <form id="contact-form" action="/post/{{ $id }}" method="post"
                 enctype="multipart/form-data">
                 {{ csrf_field() }}

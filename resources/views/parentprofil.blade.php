@@ -13,7 +13,7 @@
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href="../css/updatepost.css">
 
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -34,5 +34,5 @@
     </div>
 </body>
 <script src="{{ asset('js/post/updatepost.js') }}"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

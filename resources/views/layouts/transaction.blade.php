@@ -7,7 +7,7 @@
     <div class="page-header min-height-400" style="background-image: url('../asset/images/team-member-01.jpg');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>    @else
-    <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
+    <div class="page-header min-height-400" style="background-image: url('{{asset('storage/app/public/users/'. Auth::user()->image_desc )}}');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
     @endif
@@ -22,7 +22,7 @@
                     @if (@empty(Auth::user()->image_profil))
                     <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../asset/images/men-03.jpg" alt="bruce" loading="lazy">
                     @else
-                    <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ Auth::user()->image_profil }}" alt="bruce" loading="lazy">
+                    <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{asset('storage/app/public/users/'.Auth::user()->image_profil )}}" alt="bruce" loading="lazy">
                     @endif
 
                 </a>
@@ -69,7 +69,7 @@
                         @if (@empty($sendTransactions->image_profil))
                         <img src="../asset/images/men-03.jpg" class="avatar avatar-sm me-3">
                         @else
-                        <img src="{{ $sendTransactions->image_profil }}" class="avatar avatar-sm me-3">
+                        <img src="{{ asset( 'storage/app/public/users/'.$sendTransactions->image_profil) }}" class="avatar avatar-sm me-3">
                         @endif
                     </div>
                     <div class="d-flex flex-column justify-content-center">

@@ -69,7 +69,7 @@
         </form>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                {{ __('Already registered?') }}
+                {{ __('J ai pas de compte') }}
             </a>
         </div>
         </div>

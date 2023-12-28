@@ -15,10 +15,10 @@
             
             .imagepost {
                 display: initial;
-                height: 90% !important;
-                width: 80% !important;
-                border-radius: 57%;
-                margin-left: 7%;
+                height: 100% !important;
+                width: 77% !important;
+                border-radius: 50%;
+                margin-left: 13%;
                 box-shadow: 10px 10px 20px rgba(167, 165, 165, 0.5);
             }
             
@@ -32,8 +32,7 @@
             }
             
             .card-image:last-child img {
-                border-bottom-left-radius: 12.25rem;
-                border-bottom-right-radius: 13.25rem;
+                border-radius: 50%;
             }
             
             .card {
@@ -157,6 +156,7 @@
             .posi-icons {
                 position: relative;
                 left: 450px;
+                top: -52px;
             }
             
             .posi-icons.imageprofil {
@@ -272,5 +272,10 @@
                 .card {
                     position: relative !important;
                     left: 18% !important;
+                }
+                .posi-icons {
+                    position: relative;
+                    left: 185px;
+                    top: -52px;
                 }
             }

@@ -88,7 +88,7 @@ function afficherDonnees() {
 
                 showProfil(donnees[i].user.id);
 
-                deletepostes(donnees[i].id);
+
 
                 var icon_menu = document.createElement("i");
                 icon_menu.classList.add("material-icons");
@@ -174,25 +174,18 @@ function menu(moreIcon, id) {
 
 }
 
-function deletepostes(id_global) {
-    deletepost.addEventListener("click", function() {
-        console.log(id_global);
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
 
-            if (xhr.readyState == 4 && xhr.status == 201) {
-
-            } else {
-
-            }
-        }
-        xhr.open('get', '/deletepost/' + id_global, true);
-        xhr.send();
-        location.reload();
+deletepost.addEventListener("click", function() {
 
 
-    });
-}
+    // URL vers laquelle vous souhaitez rediriger
+    const updatepostlien = '/deletepost/' + id_global;
+    window.location.href = updatepostlien;
+
+
+
+});
+
 
 
 icon_close.addEventListener("click", function() {

@@ -8,7 +8,7 @@
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
     @elseif (!@empty(Auth::user()->image_desc))
-    <div class="page-header min-height-400" style="background-image: url('{{ Auth::user()->image_desc }}');" loading="lazy">
+    <div class="page-header min-height-400" style="background-image: url('{{ asset( 'storage/app/public/users/'.Auth::user()->image_desc )}}');" loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
     @endif
