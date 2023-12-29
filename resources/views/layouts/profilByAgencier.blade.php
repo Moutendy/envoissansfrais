@@ -2,7 +2,7 @@
 
 @section('content')
 <header>
-    <div class="page-header min-height-400" style="background-image: url('{{ $user->image_desc}}');" loading="lazy">
+    <div class="page-header min-height-400" style="background-image: url('{{ asset('storage/app/public/users/'.$user->image_desc) }}');"  loading="lazy">
         <span class="mask bg-gradient-dark opacity-8"></span>
     </div>
 </header>
@@ -17,7 +17,7 @@
                             @if (@empty($user->image_profil))
                             <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="../asset/images/men-03.jpg" alt="image" loading="lazy">
                            @else
-                           <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{ $user->image_profil}}" alt="image" loading="lazy">
+                           <img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="{{asset('storage/app/public/users/'.$user->image_profil)}}" alt="image" loading="lazy">
                             @endif
 
                         </a>
